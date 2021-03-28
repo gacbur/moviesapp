@@ -1,0 +1,40 @@
+.movie-cast-item{
+    position: relative;
+    width:150px;
+    min-height: 200px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.3);
+    margin:1em;
+}
+
+.movie-cast-item + .movie-cast-item{
+    margin-left: 1em;
+}
+
+.movie-cast-item img{
+    width:100%;    
+    display: block;
+    min-height: 100%;
+}
+
+.movie-cast-item-overlay{
+    opacity: 0;
+    transition: .3s;
+    left:0;
+    top:0;
+    height: 100%;
+    width: 100%;
+    padding: .2em;
+    color:white;
+    display: flex;
+    justify-content: flex-end;
+    padding-bottom:1em;
+    flex-direction: column;
+    text-align: center;
+    position: absolute;
+}
+
+.movie-cast-item:hover .movie-cast-item-overlay{
+    background-color: rgba(0,0,0,0.5);
+    opacity: 1;
+    transition: .3s;
+}

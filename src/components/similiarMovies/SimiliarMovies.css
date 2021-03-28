@@ -1,0 +1,31 @@
+.similiar-movies{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width:100%;
+    margin-bottom: 6em;
+}
+
+.similiar-movies__content{
+    border-top: 1px solid lightgray;
+    padding: 2em 0em;
+    width:90%;
+}
+
+.similiar-movies__content h2{
+    margin-bottom: 3em;
+}
+
+.content__similiar-movies{
+    display: flex;
+    justify-content: center;
+    padding: 2em;
+}
+
+@media all and (max-width:768px){
+    .content__similiar-movies{
+        flex-direction: column;
+        align-items: center;
+        padding: 2em;
+    }
+}

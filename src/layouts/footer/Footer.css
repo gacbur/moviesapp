@@ -1,0 +1,40 @@
+.footer{
+    background-color: rgb(26, 26, 26);
+    width: 100%;
+    padding: 2em;
+    border-top: 1px solid darkgrey;
+}
+
+.footer__text{
+    color:white;
+    display: flex;
+    justify-content: center;
+    font-size: 21px;
+    font-weight: 700;
+}
+
+.footer__icons{
+    display: flex;
+    justify-content: center;
+    margin-top: 1em;
+}
+
+.footer__icons a + a{
+    margin-left: 1em;
+}
+
+.icon{
+    cursor: pointer;
+    color:white;
+    font-size: 44px;
+    transition: .2s;
+}
+
+.icon:hover{
+    transform: translateY(-8%) scale(1.05);
+    transition: .2s;
+}
+
+
+
+

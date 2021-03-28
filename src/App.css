@@ -1,0 +1,23 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Quicksand', sans-serif;
+
+}
+
+.app{
+    position: relative;
+    min-height: 100vh;
+}
+
+.app__wrapper{
+    padding-bottom: 10em;
+}
+
+.footer{
+    width:100%;
+    bottom: 0;
+    position: absolute;
+    height: 10em;
+}
