@@ -25,7 +25,7 @@ const Favorites = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        Axios.get('http://localhost:3001/api/movie/getFavMovies')
+        Axios.get('https://mernmoviesapp.herokuapp.com/api/movie/getFavMovies')
             .then((response) => {
                 if (response.status === 200) {
                     dispatch(getFavMovies(response.data))
@@ -36,7 +36,7 @@ const Favorites = () => {
     }, [dispatch])
 
     const handleDeleteFavMovie = (id) => {
-        Axios.delete(`http://localhost:3001/api/favorite/delete/${id}`)
+        Axios.delete(`https://mernmoviesapp.herokuapp.com/api/favorite/delete/${id}`)
             .then((response) => {
                 if (response.status === 200) {
                     dispatch(updateFavMovies(response.data))

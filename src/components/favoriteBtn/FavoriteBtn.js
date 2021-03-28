@@ -26,7 +26,7 @@ const FavoriteBtn = ({ movieId, movieInfo, moviePoster }) => {
     }
 
     useEffect(() => {
-        Axios.get('http://localhost:3001/api/movie/getFavMovies')
+        Axios.get('https://mernmoviesapp.herokuapp.com/api/movie/getFavMovies')
             .then((response) => {
                 if (response.status === 200) {
                     dispatch(getFavMovies(response.data))
@@ -39,7 +39,7 @@ const FavoriteBtn = ({ movieId, movieInfo, moviePoster }) => {
     useEffect(() => {
         if (favMovies_loaded) {
             if (inFavorite) {
-                Axios.post('http://localhost:3001/api/movie/addFavMovie',
+                Axios.post('https://mernmoviesapp.herokuapp.com/api/movie/addFavMovie',
                     {
                         movieId: movieData.movieId,
                         movieTitle: movieData.movieTitle,
