@@ -34,7 +34,7 @@ const Navbar = () => {
                 <NavLink className="navbar__logo-link" to="/" exact>
                     <div className="navbar__logo">
                         <h3>
-                            Movies App
+                            Movies viewer
                     </h3>
                     </div>
                 </NavLink>
