@@ -3,6 +3,7 @@ import Axios from 'axios'
 
 import MainImage from '../../components/mainImage/MainImage'
 import MovieItem from '../../components/movieItem/MovieItem'
+import Loading from '../../components/loading/Loading'
 
 import { getMovies, resetSingleMovie } from '../../redux/actions/moviesActions'
 
@@ -76,7 +77,9 @@ const LandingPage = () => {
                                 )
                             })
                             :
-                            <h2 style={{ textAlign: "center" }}>Loading...</h2>
+                            <div className="landing-page__loading">
+                                <Loading />
+                            </div>
                     }
 
                 </div>

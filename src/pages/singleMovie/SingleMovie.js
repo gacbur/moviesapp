@@ -6,6 +6,7 @@ import FavoriteBtn from '../../components/favoriteBtn/FavoriteBtn'
 import SimiliarMovies from '../../components/similiarMovies/SimiliarMovies'
 import SingleMovieCast from '../../components/singleMovieCast/SingleMovieCast'
 import SingleMovieCrew from '../../components/singleMovieCrew/SingleMovieCrew'
+import Loading from '../../components/loading/Loading'
 
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -122,7 +123,9 @@ const SingleMovie = (props) => {
                         </div>
                     </>
                     :
-                    <div>Loading...</div>
+                    <div className="single-movie__loading">
+                        <Loading />
+                    </div>
             }
         </>
     )

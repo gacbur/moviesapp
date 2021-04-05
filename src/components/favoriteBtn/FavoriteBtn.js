@@ -34,7 +34,7 @@ const FavoriteBtn = ({ movieId, movieInfo, moviePoster }) => {
                     console.log('Failed getting favMovies')
                 }
             })
-    }, [])
+    }, [dispatch])
 
     useEffect(() => {
         if (favMovies_loaded) {
@@ -59,12 +59,12 @@ const FavoriteBtn = ({ movieId, movieInfo, moviePoster }) => {
                     }
 
                     dispatch(addFavMovie(favMovieItem))
-                }).catch(() => {
-                    alert('it did not worked')
+                }).catch((e) => {
+                    console.log(e)
                 })
             }
         }
-    }, [inFavorite])
+    }, [dispatch, favMovies_loaded, inFavorite, movieData.MovieRunTime, movieData.movieId, movieData.movieImage, movieData.moviePoster, movieData.movieTitle])
 
 
     const displayButton = () => {

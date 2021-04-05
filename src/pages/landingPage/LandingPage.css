@@ -21,6 +21,14 @@
   grid-template-columns: repeat(4, 1fr);
 }
 
+.landing-page__loading{
+  width:100%;
+  padding:5em 0em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 @media all and (max-width: 1332px) {
     .landing-page__movies {
       grid-template-columns: repeat(3, auto);

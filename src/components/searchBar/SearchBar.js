@@ -24,7 +24,6 @@ const SearchBar = ({ width }) => {
     const history = useHistory()
 
     const singleMovieCurrentID = useSelector(state => state.movies.singleMovie.id)
-    const singleMovie_loaded = useSelector(state => state.movies.singleMovie_loaded)
     const movies_loaded = useSelector(state => state.movies.movies_loaded)
 
     useEffect(() => {
