@@ -1,7 +1,7 @@
 import * as actionTypes from '../constants/favMovieConstants'
 
 const INITIAL_STATE = {
-    favMovies: [],
+    favMovies: localStorage.getItem('favMovies') ? JSON.parse(localStorage.getItem('favMovies')) : [],
     favMovies_loaded: false
 }
 
@@ -12,7 +12,7 @@ export const favMoviesReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 favMovies: [...state.favMovies, action.payload]
             }
-        case actionTypes.UPDATE_FAV_MOVIES:
+        case actionTypes.REMOVE_FAV_MOVIE:
 
             let tempFavMovies = [...state.favMovies]
 
@@ -21,12 +21,6 @@ export const favMoviesReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 favMovies: tempFavMovies,
-            }
-        case actionTypes.GET_FAV_MOVIES:
-            return {
-                ...state,
-                favMovies: action.payload,
-                favMovies_loaded: true
             }
         default:
             return state;

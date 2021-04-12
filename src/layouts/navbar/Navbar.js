@@ -63,7 +63,7 @@ const Navbar = () => {
                     </li>
                 </ul>
                 <div className="sidedrawer__search-bar-cnt">
-                    <SearchBar width={200} />
+                    <SearchBar setSideDrawerShow={setSideToggle} width={200} />
                 </div>
             </div >
             {sideToggle && <div

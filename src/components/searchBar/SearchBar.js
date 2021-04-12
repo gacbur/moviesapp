@@ -14,7 +14,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import { BsSearch } from 'react-icons/bs'
 
-const SearchBar = ({ width }) => {
+const SearchBar = ({ width, setSideDrawerShow }) => {
 
     const [movie, setMovie] = useState('')
     const [results, setResults] = useState([])
@@ -67,7 +67,6 @@ const SearchBar = ({ width }) => {
             const singleMovie = results.filter(item => item.title === movieOption)
             const singleMovieID = singleMovie.map(item => item.id)
 
-
             Axios.get(`${process.env.REACT_APP_API_URL}movie/${singleMovieID.length > 0 ? singleMovieID : singleMovieCurrentID}?api_key=${process.env.REACT_APP_API_KEY}`)
                 .then(response => response.data)
                 .then(data => {
@@ -79,9 +78,11 @@ const SearchBar = ({ width }) => {
             if (singleMovieID.length !== 0) {
                 history.push(`/movie/${singleMovieID}`)
             }
-
             else {
                 history.push(`/movie/${singleMovieCurrentID}`)
+            }
+            if (setSideDrawerShow) {
+                setSideDrawerShow(false)
             }
         }
     }

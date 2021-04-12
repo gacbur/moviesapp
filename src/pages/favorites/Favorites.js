@@ -1,12 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import { Link } from 'react-router-dom'
 
-import Axios from 'axios'
-
 import { useDispatch, useSelector } from 'react-redux'
 
-import { getFavMovies, updateFavMovies } from '../../redux/actions/favMoviesActions'
+import { removeFromFavorite } from '../../redux/actions/favMoviesActions'
 
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -24,27 +22,8 @@ const Favorites = () => {
 
     const dispatch = useDispatch()
 
-    useEffect(() => {
-        Axios.get('https://mernmoviesapp.herokuapp.com/api/movie/getFavMovies')
-            .then((response) => {
-                if (response.status === 200) {
-                    dispatch(getFavMovies(response.data))
-                } else {
-                    console.log('Failed getting favMovies')
-                }
-            })
-    }, [dispatch])
-
     const handleDeleteFavMovie = (id) => {
-        Axios.delete(`https://mernmoviesapp.herokuapp.com/api/favorite/delete/${id}`)
-            .then((response) => {
-                if (response.status === 200) {
-                    dispatch(updateFavMovies(response.data))
-                }
-                else {
-                    console.log('Failed deleting item')
-                }
-            })
+        dispatch(removeFromFavorite(id))
     }
 
     return (
@@ -62,7 +41,7 @@ const Favorites = () => {
                             </TableHead>
                             <TableBody>
                                 {favMovies.map((item) => (
-                                    <TableRow key={item._id}>
+                                    <TableRow key={item.movieId}>
                                         <TableCell component="th" scope="row">
                                             <Link to={`/movie/${item.movieId}`}>{item.movieTitle}</Link>
                                         </TableCell>

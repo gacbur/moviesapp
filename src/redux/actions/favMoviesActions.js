@@ -5,18 +5,16 @@ export const addFavMovie = (movie) => (dispatch, getState) => {
         type: actionTypes.ADD_FAV_MOVIE,
         payload: movie
     })
+
+    localStorage.setItem('favMovies', JSON.stringify(getState().favMovies.favMovies))
 }
 
-export const updateFavMovies = (id) => (dispatch, getState) => {
+export const removeFromFavorite = (id) => (dispatch, getState) => {
     dispatch({
-        type: actionTypes.UPDATE_FAV_MOVIES,
+        type: actionTypes.REMOVE_FAV_MOVIE,
         payload: id
     })
+
+    localStorage.setItem('favMovies', JSON.stringify(getState().favMovies.favMovies))
 }
 
-export const getFavMovies = (favMovies) => (dispatch, getState) => {
-    dispatch({
-        type: actionTypes.GET_FAV_MOVIES,
-        payload: favMovies
-    })
-}

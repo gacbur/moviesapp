@@ -99,7 +99,7 @@ const SingleMovie = (props) => {
                                 <h1>{title}</h1>
                                 <FavoriteBtn
                                     movieId={singleMovieId}
-                                    movieInfo={singleMovie}
+                                    movieTitle={title}
                                     moviePoster={poster_path}
                                 />
                             </div>
