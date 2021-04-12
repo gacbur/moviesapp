@@ -61,35 +61,33 @@ const LandingPage = () => {
                     /> : null
                 }
             </div>
-            <div className="landing-page">
-                <h1>Popular movies</h1>
-                <div className="landing-page__movies">
-                    {
-                        movies_loaded
-                            ?
-                            movies.map((item, key) => {
-                                return (
-                                    <MovieItem
-                                        key={key}
-                                        image={item.poster_path && `${process.env.REACT_APP_IMAGE_URL}w500${item.poster_path}`}
-                                        id={item.id}
-                                    />
-                                )
-                            })
-                            :
-                            <div className="landing-page__loading">
-                                <Loading />
-                            </div>
-                    }
+            {movies_loaded ?
+                <div className="landing-page">
+                    <h1>Popular movies</h1>
+                    <div className="landing-page__movies">
+                        {movies.map((item, key) => {
+                            return (
+                                <MovieItem
+                                    key={key}
+                                    image={item.poster_path && `${process.env.REACT_APP_IMAGE_URL}w500${item.poster_path}`}
+                                    id={item.id}
+                                />
+                            )
+                        })
+                        }
 
+                    </div>
+                    <div className="landing-page__load-more">
+                        <button
+                            onClick={() => handleLoadMoreMovies()}
+                        >
+                            Load more</button>
+                    </div>
                 </div>
-                <div className="landing-page__load-more">
-                    <button
-                        onClick={() => handleLoadMoreMovies()}
-                    >
-                        Load more</button>
-                </div>
-            </div>
+                :
+                <div className="landing-page__loading">
+                    <Loading />
+                </div>}
         </>
     )
 }
