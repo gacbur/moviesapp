@@ -1,0 +1,189 @@
+.movies-carousel{
+    margin-bottom: 6em;
+    margin-top:5em;
+
+    .carousel{
+        width: 100% !important;
+        height: 100% !important;
+        background-color: rgb(26, 26, 26);
+        display: flex;
+        
+        .carousel__item-cnt{
+            width:100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .carousel__item{
+            cursor: pointer;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            width:70%;
+            height: 700px;
+            transition: .4s;
+
+            @media all and(max-width:1300px){
+                width:80%;
+                height:600px;
+            }
+
+            @media all and(max-width:1100px){
+                width:90%;
+                height:500px;
+            }
+            
+            @media all and(max-width:860px){
+                width:95%;
+                height:420px;
+            }
+
+            @media all and(max-width:650px){
+                width:100%;
+                height:350px;
+            }
+
+            @media all and(max-width:550px){
+                width:100%;
+                height:310px;
+            }
+
+            @media all and(max-width:450px){
+                width:100%;
+                height:290px;
+            }
+
+
+            &:hover{
+                transition: .4s;
+                opacity: .7;
+            }
+        }
+        
+        .img-overlay{
+            pointer-events: none;
+            cursor: pointer;
+            position: absolute;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width:900px;
+            min-height: 180px;
+            max-height: 180px;
+            bottom:-20px;
+            left:50%;
+            transform: translate(-50%,-50%);
+            font-weight: 600;
+            display: flex;
+            padding:1.3em 2em;
+            background-color: rgba(0,0,0,.8);
+            
+            h2{
+                color: gray;
+                text-align: left;
+                margin-bottom: .6em;
+            }
+        
+            p{
+                color: white;
+                text-align: left;
+            
+            }
+            
+            @media all and(max-width:1300px){
+                width:700px;
+                bottom:-20px;    
+
+                h2{
+                    font-size: 22px;
+                }
+            
+                p{
+                    font-size: 15px;    
+                }
+            }
+
+            @media all and(max-width:1100px){
+                bottom:-40px;    
+
+                h2{
+                    font-size: 20px;
+                }
+            
+                p{
+                    font-size: 13px;    
+                }
+            }
+            
+            @media all and(max-width:860px){
+                bottom:-20px;
+                min-height: 150px;
+                max-height: 150px;  
+                width:550px;   
+
+                h2{
+                    font-size: 20px;
+                }
+            
+                p{
+                    font-size: 13px;    
+                }
+            
+            
+            @media all and(max-width:650px){
+                bottom:-15px;
+                width:490px;
+                min-height: 130px;
+                max-height: 130px;    
+
+                h2{
+                    font-size: 18px;
+                }
+            
+                p{
+                    font-size: 11px;    
+                }
+            }
+
+            @media all and(max-width:550px){
+                bottom:-10px;
+                width:400px;
+                padding: .5em .7em;
+                min-height: 110px;
+                max-height: 110px;    
+
+                h2{
+                    font-size: 16px;
+                }
+            
+                p{
+                    font-size: 11px;    
+                }
+            }
+
+            @media all and(max-width:420px){
+                bottom:-10px;
+                width:300px;
+
+                h2{
+                    font-size: 16px;
+                }
+            
+                p{
+                    font-size: 11px;    
+                }
+            }
+        }
+    } 
+}
+
+.movies-carousel-loading{
+    height:750px;
+    width:100%;
+    margin-bottom: 6em;
+    margin-top:6em;
+}
+
+}

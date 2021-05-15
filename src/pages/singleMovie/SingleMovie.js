@@ -27,6 +27,7 @@ const SingleMovie = (props) => {
         Axios.get(`${process.env.REACT_APP_API_URL}movie/${singleMovieId}?api_key=${process.env.REACT_APP_API_KEY}`)
             .then(response => response.data)
             .then(movieItem => {
+                console.log(movieItem)
                 dispatch(getSingleMovie(movieItem))
             }).catch(err =>
                 console.log("Failed getting single movie item" + err)
