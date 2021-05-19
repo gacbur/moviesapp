@@ -8,7 +8,7 @@ import './SingleMovieCrew.css'
 
 const SingleMovieCrew = () => {
 
-    const crew = useSelector(state => state.movies.singleMovie_crew)
+    const crew = useSelector(state => state.singleMovie.singleMovie_crew)
 
     const [maxCrewLength, setMaxCrewLength] = useState(0)
     const [currentCrew, setCurrentCrew] = useState()

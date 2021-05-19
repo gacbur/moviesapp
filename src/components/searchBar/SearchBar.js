@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { useHistory } from 'react-router-dom'
 
-import { getSingleMovie } from '../../redux/actions/moviesActions'
+import { getSingleMovie } from '../../redux/actions/singleMovieActions'
 
 import TextField from '@material-ui/core/TextField';
 import { Autocomplete } from '@material-ui/lab';
@@ -23,13 +23,12 @@ const SearchBar = ({ width, setSideDrawerShow }) => {
     const dispatch = useDispatch()
     const history = useHistory()
 
-    const singleMovieCurrentID = useSelector(state => state.movies.singleMovie.id)
+    const singleMovieCurrentID = useSelector(state => state.singleMovie.singleMovie.id)
     const movies_loaded = useSelector(state => state.movies.movies_loaded)
 
     useEffect(() => {
         if (movie.length > 0) {
             const getSearchingResults = async (movie) => {
-
                 const API = `${process.env.REACT_APP_API_URL}search/movie?api_key=${process.env.REACT_APP_API_KEY}&query=${movie}`
                 const response = await fetch(API)
                 const responseJson = await response.json()

@@ -7,6 +7,8 @@ import { useHistory } from 'react-router'
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 
+import ClipLoader from 'react-spinners/ClipLoader'
+
 import "./MoviesCarousel.css"
 
 const MoviesCarousel = () => {
@@ -36,10 +38,6 @@ const MoviesCarousel = () => {
     }, [])
 
     useEffect(() => {
-        console.log(movies)
-    }, [movies])
-
-    useEffect(() => {
         const startCarousel = () => {
             setTimeout(() => {
                 setStartingMovie(1)
@@ -51,50 +49,53 @@ const MoviesCarousel = () => {
         }
     }, [movies])
 
-
     const handleGoToMovie = (index) => {
         const projectItemId = movies[index].id
         setStartingMovie(projectItemId)
         history.push(`/movie/${projectItemId}`)
     }
 
-
     return (
         <>
-            {movies.length > 0 && <div className='movies-carousel'>
-                <Carousel
-                    className="carousel"
-                    autoPlay
-                    infiniteLoop
-                    interval={5000}
-                    showArrows={false}
-                    selectedItem={startingMovie}
-                    showStatus={false}
-                    showThumbs={false}
-                    stopOnHover
-                    onClickItem={(index) => handleGoToMovie(index)}
-                >
-                    {movies.map(movie => {
-                        return (
-                            <div className="carousel__item-cnt" key={movie.id}>
-                                <div className="carousel__item" style={{ backgroundImage: `url(${process.env.REACT_APP_IMAGE_URL}w1280${movie.imageUrl})` }}>
+            <div className='movies-carousel'>
+                {movies.length > 0 ?
+                    <Carousel
+                        className="carousel"
+                        autoPlay
+                        infiniteLoop
+                        interval={5000}
+                        showArrows={false}
+                        selectedItem={startingMovie}
+                        showStatus={false}
+                        showThumbs={false}
+                        stopOnHover
+                        onClickItem={(index) => handleGoToMovie(index)}
+                    >
+                        {movies.map(movie => {
+                            return (
+                                <div className="carousel__item-cnt" key={movie.id}>
+                                    <div className="carousel__item" style={{ backgroundImage: `url(${process.env.REACT_APP_IMAGE_URL}w1280${movie.imageUrl})` }}>
+                                    </div>
+                                    <div className="img-overlay">
+                                        <h2>
+                                            {movie.title}
+                                        </h2>
+                                        <p>
+                                            {movie.overview.length > 180 ? `${movie.overview.slice(0, 180)}...` : movie.overview}
+                                        </p>
+                                    </div>
                                 </div>
-                                <div className="img-overlay">
-                                    <h2>
-                                        {movie.title}
-                                    </h2>
-                                    <p>
-                                        {movie.overview.length > 200 ? `${movie.overview.slice(0, 200)}...` : movie.overview}
-                                    </p>
-                                </div>
-                            </div>
-                        )
-                    })}
-                </Carousel>
-            </div>}
-            { movies.length < 0 && <div className="movies-carousel-loading">
-                Loading
-            </div>}
+                            )
+                        })}
+                    </Carousel>
+                    :
+                    <>
+                        <div className="carousel__item-loading">
+                            <ClipLoader className="loader" size={90} color="#ffffff" />
+                        </div>
+                    </>
+                }
+            </div>
         </>
     )
 }

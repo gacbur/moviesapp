@@ -1,6 +1,11 @@
+@keyframes CarouselItemOpacity {
+    0%   { opacity: .3; }
+    100% { opacity: 1; }
+  }
+
 .movies-carousel{
     margin-bottom: 6em;
-    margin-top:5em;
+    margin-top:6em;
 
     .carousel{
         width: 100% !important;
@@ -22,8 +27,10 @@
             background-size: cover;
             width:70%;
             height: 700px;
+            animation: CarouselItemOpacity 2s ;
             transition: .4s;
 
+            
             @media all and(max-width:1300px){
                 width:80%;
                 height:600px;
@@ -52,6 +59,11 @@
             @media all and(max-width:450px){
                 width:100%;
                 height:290px;
+            }
+
+            @media all and(max-width:330px){
+                width:100%;
+                height:270px;
             }
 
 
@@ -148,8 +160,8 @@
             }
 
             @media all and(max-width:550px){
-                bottom:-10px;
-                width:400px;
+                bottom:0px;
+                width:410px;
                 padding: .5em .7em;
                 min-height: 110px;
                 max-height: 110px;    
@@ -164,26 +176,80 @@
             }
 
             @media all and(max-width:420px){
-                bottom:-10px;
-                width:300px;
+                width:320px;
+                bottom:30px;
+                align-items: center;
+                justify-content: center;    
+                max-height: 50px;
+                min-height: 50px;
+
+                h2{
+                    font-size: 14px;
+                }
+            
+                p{
+                    display: none;
+                }
+            }
+
+            @media all and(max-width:330px){
+                width:260px;
+                bottom:30px;
+                align-items: center;
+                justify-content: center;    
+                max-height: 50px;
+                min-height: 50px;
 
                 h2{
                     font-size: 16px;
                 }
             
                 p{
-                    font-size: 11px;    
+                    display: none;   
                 }
             }
         }
-    } 
-}
+    }
 
-.movies-carousel-loading{
-    height:750px;
-    width:100%;
-    margin-bottom: 6em;
-    margin-top:6em;
-}
+    &__item-loading{
+        background-color: rgb(26, 26, 26);
+        width:100%;
+        height: 700px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 6em;
+        margin-top:6em;
 
+        @media all and(max-width:1300px){
+            height:600px;
+        }
+
+        @media all and(max-width:1100px){
+            height:500px;
+        }
+        
+        @media all and(max-width:860px){
+            height:420px;
+        }
+
+        @media all and(max-width:650px){
+            height:350px;
+        }
+
+        @media all and(max-width:550px){
+            height:310px;
+        }
+
+        @media all and(max-width:450px){
+            height:290px;
+        }
+
+        @media all and(max-width:330px){
+            height:270px;
+        }
+    }
+
+
+}
 }

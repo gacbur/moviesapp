@@ -8,7 +8,7 @@ import './SimiliarMovies.css'
 
 const SimiliarMovies = () => {
 
-    const similiarMovies = useSelector(state => state.movies.similiarMovies)
+    const similiarMovies = useSelector(state => state.singleMovie.similiarMovies)
 
     return (
         <div className="similiar-movies">

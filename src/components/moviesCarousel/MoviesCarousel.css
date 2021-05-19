@@ -1,6 +1,24 @@
+@-webkit-keyframes CarouselItemOpacity {
+  0% {
+    opacity: .3;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes CarouselItemOpacity {
+  0% {
+    opacity: .3;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .movies-carousel {
   margin-bottom: 6em;
-  margin-top: 5em;
+  margin-top: 6em;
 }
 
 .movies-carousel .carousel {
@@ -32,6 +50,8 @@
   background-size: cover;
   width: 70%;
   height: 700px;
+  -webkit-animation: CarouselItemOpacity 2s;
+          animation: CarouselItemOpacity 2s;
   -webkit-transition: .4s;
   transition: .4s;
 }
@@ -75,6 +95,13 @@
   .movies-carousel .carousel .carousel__item {
     width: 100%;
     height: 290px;
+  }
+}
+
+@media all and (max-width: 330px) {
+  .movies-carousel .carousel .carousel__item {
+    width: 100%;
+    height: 270px;
   }
 }
 
@@ -180,8 +207,8 @@
 
 @media all and (max-width: 860px) and (max-width: 550px) {
   .movies-carousel .carousel .img-overlay {
-    bottom: -10px;
-    width: 400px;
+    bottom: 0px;
+    width: 410px;
     padding: .5em .7em;
     min-height: 110px;
     max-height: 110px;
@@ -196,21 +223,102 @@
 
 @media all and (max-width: 860px) and (max-width: 420px) {
   .movies-carousel .carousel .img-overlay {
-    bottom: -10px;
-    width: 300px;
+    width: 320px;
+    bottom: 30px;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    max-height: 50px;
+    min-height: 50px;
+  }
+  .movies-carousel .carousel .img-overlay h2 {
+    font-size: 14px;
+  }
+  .movies-carousel .carousel .img-overlay p {
+    display: none;
+  }
+}
+
+@media all and (max-width: 860px) and (max-width: 330px) {
+  .movies-carousel .carousel .img-overlay {
+    width: 260px;
+    bottom: 30px;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    max-height: 50px;
+    min-height: 50px;
   }
   .movies-carousel .carousel .img-overlay h2 {
     font-size: 16px;
   }
   .movies-carousel .carousel .img-overlay p {
-    font-size: 11px;
+    display: none;
   }
 }
 
-.movies-carousel .movies-carousel-loading {
-  height: 750px;
+.movies-carousel .carousel__item-loading {
+  background-color: #1a1a1a;
   width: 100%;
+  height: 700px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   margin-bottom: 6em;
   margin-top: 6em;
+}
+
+@media all and (max-width: 1300px) {
+  .movies-carousel .carousel__item-loading {
+    height: 600px;
+  }
+}
+
+@media all and (max-width: 1100px) {
+  .movies-carousel .carousel__item-loading {
+    height: 500px;
+  }
+}
+
+@media all and (max-width: 860px) {
+  .movies-carousel .carousel__item-loading {
+    height: 420px;
+  }
+}
+
+@media all and (max-width: 650px) {
+  .movies-carousel .carousel__item-loading {
+    height: 350px;
+  }
+}
+
+@media all and (max-width: 550px) {
+  .movies-carousel .carousel__item-loading {
+    height: 310px;
+  }
+}
+
+@media all and (max-width: 450px) {
+  .movies-carousel .carousel__item-loading {
+    height: 290px;
+  }
+}
+
+@media all and (max-width: 330px) {
+  .movies-carousel .carousel__item-loading {
+    height: 270px;
+  }
 }
 /*# sourceMappingURL=MoviesCarousel.css.map */

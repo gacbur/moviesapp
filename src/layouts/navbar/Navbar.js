@@ -17,6 +17,7 @@ const Navbar = () => {
 
     useEffect(() => {
         const showSearchBar = () => {
+            console.log(navbarEl.current.clientWidth)
             if (navbarEl.current.clientWidth >= 768) {
                 setShow(true)
             } else {

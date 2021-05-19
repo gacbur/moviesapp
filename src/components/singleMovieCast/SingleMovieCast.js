@@ -8,7 +8,7 @@ import './SingleMovieCast.css'
 
 const SingleMovieCast = () => {
 
-    const cast = useSelector(state => state.movies.singleMovie_cast)
+    const cast = useSelector(state => state.singleMovie.singleMovie_cast)
 
     const [maxCastLength, setMaxCastLength] = useState(0)
     const [currentCast, setCurrentCast] = useState()

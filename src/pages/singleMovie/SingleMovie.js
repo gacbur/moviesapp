@@ -4,13 +4,14 @@ import Axios from 'axios'
 import MainImage from '../../components/mainImage/MainImage'
 import FavoriteBtn from '../../components/favoriteBtn/FavoriteBtn'
 import SimiliarMovies from '../../components/similiarMovies/SimiliarMovies'
+import SingleMovieGallery from '../../components/singleMovieGallery/SingleMovieGallery'
 import SingleMovieCast from '../../components/singleMovieCast/SingleMovieCast'
 import SingleMovieCrew from '../../components/singleMovieCrew/SingleMovieCrew'
 import Loading from '../../components/loading/Loading'
 
 import { useDispatch, useSelector } from 'react-redux'
 
-import { getSingleMovie, getSimiliarMovies, getSingleMovieCrewAndCast } from '../../redux/actions/moviesActions'
+import { getSingleMovie, singleMovieLoading, getSimiliarMovies, getSingleMovieGallery, getSingleMovieCrewAndCast } from '../../redux/actions/singleMovieActions'
 
 import './SingleMovie.css'
 
@@ -24,37 +25,53 @@ const SingleMovie = (props) => {
 
     useEffect(() => {
 
+        dispatch(singleMovieLoading(true))
         Axios.get(`${process.env.REACT_APP_API_URL}movie/${singleMovieId}?api_key=${process.env.REACT_APP_API_KEY}`)
             .then(response => response.data)
             .then(movieItem => {
-                console.log(movieItem)
                 dispatch(getSingleMovie(movieItem))
+                dispatch(singleMovieLoading(false))
             }).catch(err =>
                 console.log("Failed getting single movie item" + err)
             )
 
+        dispatch(singleMovieLoading(true))
+        Axios.get(`${process.env.REACT_APP_API_URL}/movie/${singleMovieId}/images?api_key=${process.env.REACT_APP_API_KEY}`)
+            .then(response => response.data.backdrops)
+            .then(galleryItems => {
+                dispatch(getSingleMovieGallery(galleryItems))
+                dispatch(singleMovieLoading(false))
+            }).catch(err =>
+                console.log("Failed getting single movie item" + err)
+            )
+
+        dispatch(singleMovieLoading(true))
         Axios.get(`${process.env.REACT_APP_API_URL}movie/${singleMovieId}/credits?api_key=${process.env.REACT_APP_API_KEY}`)
             .then(response => response.data)
             .then(results => {
                 dispatch(getSingleMovieCrewAndCast(results.crew, results.cast))
+                dispatch(singleMovieLoading(false))
             }).catch(err =>
                 console.log("Failed getting single movie item" + err)
             )
 
+        dispatch(singleMovieLoading(true))
         Axios.get(`${process.env.REACT_APP_API_URL}movie/${singleMovieId}/recommendations?api_key=${process.env.REACT_APP_API_KEY}`)
             .then(response => response.data.results)
             .then(results => {
                 let tempResults = results
                 tempResults = tempResults.slice(0, 3)
                 dispatch(getSimiliarMovies(tempResults))
+                dispatch(singleMovieLoading(false))
             }).catch(err =>
                 console.log("Failed getting single movie item" + err)
             )
 
+
     }, [singleMovieId, dispatch])
 
-    const singleMovie = useSelector(state => state.movies.singleMovie)
-    const singleMovie_loaded = useSelector(state => state.movies.singleMovie_loaded)
+    const singleMovie = useSelector(state => state.singleMovie.singleMovie)
+    const singleMovie_loading = useSelector(state => state.singleMovie.singleMovie_loading)
 
     const {
         adult,
@@ -85,12 +102,12 @@ const SingleMovie = (props) => {
             }
         }
         getRatingColor()
-    }, [singleMovie_loaded, vote_average])
+    }, [singleMovie_loading, vote_average])
 
     return (
         <>
             {
-                singleMovie_loaded ?
+                !singleMovie_loading ?
                     <>
                         <div className="single-movie__main-image">
                             <MainImage image={`${process.env.REACT_APP_IMAGE_URL}w1280${backdrop_path}`} />
@@ -118,6 +135,7 @@ const SingleMovie = (props) => {
                                     <p><strong>Age: </strong>{adult ? '18+' : 'below 18'}</p>
                                 </div>
                             </div>
+                            <SingleMovieGallery />
                             <SingleMovieCast />
                             <SingleMovieCrew />
                             <SimiliarMovies />
