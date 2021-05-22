@@ -17,6 +17,7 @@ const SingleMovieGallery = () => {
                 showArrows
                 showStatus
                 showThumbs={false}
+                showIndicators={false}
                 stopOnHover
                 selectedItem={0}
 

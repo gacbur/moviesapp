@@ -9,7 +9,6 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  padding: 0em 3em;
   margin: 4em 0em;
   width: 100%;
 }
@@ -73,9 +72,38 @@
   background-color: #1a1a1a;
   color: white;
   border: 2px solid #1a1a1a;
-  margin-left: .7em;
+  margin: 0em .3em;
   -webkit-transition: .25s;
   transition: .25s;
+}
+
+@media all and (max-width: 500px) {
+  .landing-page__category-btns button {
+    width: 90px;
+  }
+}
+
+@media all and (max-width: 410px) {
+  .landing-page__category-btns button {
+    width: 80px;
+  }
+}
+
+@media all and (max-width: 360px) {
+  .landing-page__category-btns button {
+    width: 75px;
+    height: 40px;
+    margin: 0 .2em;
+    font-size: 12px;
+  }
+}
+
+@media all and (max-width: 330px) {
+  .landing-page__category-btns button {
+    width: 70px;
+    height: 40px;
+    margin: 0 .15em;
+  }
 }
 
 .landing-page__category-btns button.active {

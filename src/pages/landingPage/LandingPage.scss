@@ -3,7 +3,6 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding: 0em 3em;
   margin:4em 0em;
   width:100%;   
 
@@ -22,7 +21,6 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
 
-  
     @media all and (max-width: 1332px) {
           grid-template-columns: repeat(3, auto);
               }
@@ -34,9 +32,6 @@
       @media all and (max-width: 800px) {
           grid-template-columns: 1fr;
       }
-    
-     
-
     }
   
   &__category-btns{
@@ -52,8 +47,29 @@
         background-color:rgb(26, 26, 26);
         color:white;
         border:2px solid rgb(26,26,26);
-        margin-left: .7em;
+        margin: 0em .3em;
         transition: .25s;
+
+        @media all and(max-width:500px){
+          width:90px;
+        }
+
+        @media all and(max-width:410px){
+          width:80px;
+        }
+
+        @media all and(max-width:360px){
+          width:75px;
+          height: 40px;
+          margin:0 .2em;
+          font-size: 12px;
+        }
+
+        @media all and(max-width:330px){
+          width:70px;
+          height: 40px;
+          margin:0 .15em;
+        }
 
         &.active{
           transition: none;

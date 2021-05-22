@@ -17,7 +17,6 @@ const Navbar = () => {
 
     useEffect(() => {
         const showSearchBar = () => {
-            console.log(navbarEl.current.clientWidth)
             if (navbarEl.current.clientWidth >= 768) {
                 setShow(true)
             } else {
@@ -45,6 +44,9 @@ const Navbar = () => {
                     />
                 </button>
                 <ul className="navbar__links">
+                    <li>
+                        <NavLink to="/categories">Categories</NavLink>
+                    </li>
                     <li>
                         <NavLink to="/favorites">Favorites</NavLink>
                     </li>

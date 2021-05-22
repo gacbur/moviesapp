@@ -71,3 +71,9 @@
       width: 300px;
     }
   }
+
+  @media all and  (max-width: 350px) {
+    .movie-item {
+      width: 280px;
+    }
+  }

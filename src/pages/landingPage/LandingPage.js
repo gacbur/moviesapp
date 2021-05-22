@@ -113,10 +113,10 @@ const LandingPage = () => {
                                 </button>
                 </div>
                 <div className="landing-page__movies">
-                    {!movies_loaded && movies.map((item, key) => {
+                    {!movies_loaded && movies.map((item, index) => {
                         return (
                             <MovieItem
-                                key={key}
+                                key={index}
                                 image={item.poster_path && `${process.env.REACT_APP_IMAGE_URL}w500${item.poster_path}`}
                                 id={item.id}
                             />

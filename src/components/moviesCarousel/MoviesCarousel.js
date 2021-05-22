@@ -64,9 +64,10 @@ const MoviesCarousel = () => {
                         autoPlay
                         infiniteLoop
                         interval={5000}
-                        showArrows={false}
+                        showArrows
                         selectedItem={startingMovie}
                         showStatus={false}
+                        showIndicators={false}
                         showThumbs={false}
                         stopOnHover
                         onClickItem={(index) => handleGoToMovie(index)}
