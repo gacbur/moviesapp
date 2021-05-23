@@ -118,6 +118,7 @@ const LandingPage = () => {
                             <MovieItem
                                 key={index}
                                 image={item.poster_path && `${process.env.REACT_APP_IMAGE_URL}w500${item.poster_path}`}
+                                title={item.title}
                                 id={item.id}
                             />
                         )

@@ -62,6 +62,9 @@ const Navbar = () => {
                         <Link to="/">Home</Link>
                     </li>
                     <li>
+                        <NavLink to="/categories">Categories</NavLink>
+                    </li>
+                    <li>
                         <Link to="/favorites">Favorites <BsFillHeartFill className="sidedrawer__links__heart" /></Link>
                     </li>
                 </ul>

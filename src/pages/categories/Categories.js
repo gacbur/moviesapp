@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import axios from 'axios'
 
-import { getMovies, moviesLoading } from '../../redux/actions/categoriesActions'
+import { getMovies, getMoviesError, moviesLoading, moviesFailed } from '../../redux/actions/categoriesActions'
 
 import MovieItem from '../../components/movieItem/MovieItem'
 import Loading from '../../components/loading/Loading'
@@ -19,9 +19,12 @@ const Categories = () => {
     const [pickedGenres, setPickedGenres] = useState([28])
 
     const [loadMorePages, setLoadMorePages] = useState(1)
+    const [hasNextPage, setHasNextPage] = useState(true)
 
     const moviesByCategory = useSelector(state => state.categories.moviesByCategory)
+    const moviesByCategory_error = useSelector(state => state.categories.moviesByCategory_error)
     const movies_loading = useSelector(state => state.categories.moviesByCategory_loading)
+    const movies_failed = useSelector(state => state.categories.moviesByCategory_failed)
 
     const MoviesByGenreUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}`;
 
@@ -43,52 +46,61 @@ const Categories = () => {
         }
     }
 
-    // useEffect(() => {
-    //     axios.get(MoviesByGenreUrl, { params: { with_genres: pickedGenres } })
-    //         .then(res => res.data)
-    //         .then(data => console.log(data))
-    // }, [pickedGenres])
-
-
     useEffect(() => {
-        console.log(pickedGenres)
         dispatch(moviesLoading(true))
-        axios.get(MoviesByGenreUrl, { params: { page: loadMorePages, with_genres: String(pickedGenres) } })
+        dispatch(getMoviesError(false))
+        axios.get(MoviesByGenreUrl, { params: { page: loadMorePages, with_genres: pickedGenres } })
             .then(res => res.data.results)
             .then(results => {
                 dispatch(getMovies([...results]))
                 dispatch(moviesLoading(false))
             })
             .catch(e => {
-                console.log(e)
+                dispatch(getMoviesError(true))
+                dispatch(moviesLoading(false))
             })
     }, [])
 
     useEffect(() => {
-        console.log(pickedGenres)
         dispatch(moviesLoading(true))
+        dispatch(getMoviesError(false))
         axios.get(MoviesByGenreUrl, { params: { page: loadMorePages, with_genres: String(pickedGenres) } })
-            .then(res => res.data.results)
-            .then(results => {
-                dispatch(getMovies([...results]))
+            .then(res => res.data)
+            .then(data => {
+                if (data.total_pages > 1) {
+                    setHasNextPage(true)
+                }
+                else {
+                    setHasNextPage(false)
+                }
+                dispatch(getMovies([...data.results]))
                 dispatch(moviesLoading(false))
+                if (data.results.length === 0) {
+                    dispatch(moviesFailed(true))
+                }
             })
             .catch(e => {
-                console.log(e)
+                dispatch(getMoviesError(true))
+                dispatch(moviesLoading(false))
             })
     }, [pickedGenres])
 
     useEffect(() => {
         if (loadMorePages !== 1) {
             dispatch(moviesLoading(true))
+            dispatch(moviesFailed(false))
             axios.get(MoviesByGenreUrl, { params: { page: loadMorePages, with_genres: pickedGenres } })
                 .then(res => res.data.results)
                 .then(results => {
                     dispatch(getMovies([...moviesByCategory, ...results]))
                     dispatch(moviesLoading(false))
+                    if (results.length === 0) {
+                        dispatch(moviesFailed(true))
+                    }
                 })
                 .catch(e => {
-                    console.log(e)
+                    dispatch(getMoviesError(true))
+                    dispatch(moviesLoading(false))
                 })
         }
     }, [loadMorePages])
@@ -111,7 +123,7 @@ const Categories = () => {
                             {genre.name}
                         </button>
                     )
-                }) : 'loading'}
+                }) : <Loading />}
             </div>
             <div className="categories__movies">
                 {moviesByCategory.length > 0 &&
@@ -120,21 +132,26 @@ const Categories = () => {
                             <MovieItem
                                 key={index}
                                 image={movie.poster_path && `${process.env.REACT_APP_IMAGE_URL}w500${movie.poster_path}`}
+                                title={movie.title}
                                 id={movie.id}
                             />
                         )
                     })
                 }
-
             </div>
-            <div className="categories__loadmore-btn-wrapper">
-                <button
+            {movies_failed && <div className="categories__movies-failed">
+                <h2>We couldnt't find movies with this specific genres, sorry!</h2>
+            </div>}
+            {moviesByCategory_error && <div className="categories__movies-error">
+                <h2>Sorry, we are not able to display movies due to error, try refreshing the page!</h2>
+            </div>}
+            {!movies_failed && !moviesByCategory_error ? <div className="categories__loadmore-btn-wrapper">
+                {hasNextPage && <button
                     onClick={() => handleLoadMoreMovies()}
                 >
                     Load more
-                </button>
-                { }
-            </div>
+                </button>}
+            </div> : null}
             <div className="categories__loading-wrapper">
                 {movies_loading && <Loading />}
             </div>

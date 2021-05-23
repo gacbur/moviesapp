@@ -1,2 +1,4 @@
 export const GET_MOVIES = "GET_MOVIES"
+export const GET_MOVIES_ERROR = "GET_MOVIES_ERROR"
 export const MOVIES_LOADING = "MOVIES_LOADING"
+export const MOVIES_FAILED = "MOVIES_FAILED"
