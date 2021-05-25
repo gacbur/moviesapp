@@ -12,19 +12,20 @@
 .navbar__logo {
   color: white;
   position: relative;
-  width: 10em;
-  margin-left: 3em;
+  width: 9em;
+  margin-left: 2em;
 }
 
 .navbar__hamburger {
   cursor: pointer;
   display: none;
   position: absolute;
-  right: 5%;
+  font-size: larger;
+  right: 4%;
 }
 
 .navbar__logo-link {
-  padding: 1em 0em;
+  padding: 1.5em 0em;
   text-decoration: none;
 }
 
@@ -46,6 +47,12 @@
 
 .navbar__links li {
   list-style: none;
+  -webkit-transition: .25s;
+  transition: .25s;
+}
+
+.navbar__links li:hover {
+  background-color: #3a3a3a;
 }
 
 .navbar__links a {
@@ -54,7 +61,7 @@
   text-decoration: none;
   display: block;
   color: white;
-  padding: 1.8em 2em;
+  padding: 1.8em 1.4em;
 }
 
 .navbar .links__search-bar-cnt {
@@ -90,9 +97,9 @@
     color: white;
     background-color: #1a1a1a;
     border: none;
-    padding: .5em .6em;
-    font-size: 28px;
-    right: 5%;
+    padding: .4em .5em;
+    font-size: 37px;
+    right: 4%;
   }
   .navbar .search-bar {
     display: none;

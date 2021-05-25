@@ -8,6 +8,9 @@ import { getMovies, getMoviesError, moviesLoading, moviesFailed } from '../../re
 
 import MovieItem from '../../components/movieItem/MovieItem'
 import Loading from '../../components/loading/Loading'
+import GoUpButton from '../../components/goUpButton/GoUpButton'
+
+import { Element } from 'react-scroll'
 
 import './Categories.css'
 
@@ -110,7 +113,7 @@ const Categories = () => {
     }
 
     return (
-        <div className="categories">
+        <Element className="categories" name="categories">
             <div className="categories__buttons">
                 {genres.length > 0 ? genres.map(genre => {
                     return (
@@ -155,7 +158,10 @@ const Categories = () => {
             <div className="categories__loading-wrapper">
                 {movies_loading && <Loading />}
             </div>
-        </div>
+            <GoUpButton
+                scrollToElementName={'categories'}
+            />
+        </Element>
     )
 }
 

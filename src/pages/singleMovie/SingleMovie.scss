@@ -1,0 +1,221 @@
+.single-movie-main-image{
+    margin-bottom: 4em;
+    margin-top:5em;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background-color: rgb(26, 26, 26);
+}
+
+.single-movie{
+    position:relative;
+    width:100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    &__add-fav{
+        padding: 2em;
+        border-bottom: 1px solid lightgray;
+        display: flex;
+        align-items: center;
+        width: 60%;
+    
+        @media all and(max-width:1300px){
+            width:80%;
+        }
+    
+        @media all and(max-width:900px){
+            width:95%;
+        }
+
+        h1{
+           flex-grow: 1;
+           font-size: 27px;
+        
+           @media all and(max-width:600px){
+               font-size: 24px;
+           }
+        }
+
+        button{
+            display: flex;
+            padding:1em .8em;
+            align-items: center;
+            cursor: pointer;
+            font-size: 17px;
+            color: rgb(26, 26, 26);
+            background-color: white;
+            border:2px solid  rgb(26, 26, 26);
+            transition: .3s;
+
+            svg{
+                margin-left: .5em;
+            }
+            
+            &:hover{
+                color:white;
+                border:2px solid  rgb(26, 26, 26);
+                background-color:  rgb(26, 26, 26);
+                transition: .3s;
+            }
+
+            a:hover{
+                text-decoration: none;
+                color: white;
+            }
+
+        }
+        
+    }
+
+    &__loading{
+        width:100%;
+        padding:5em 0em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__full-description{
+        width: 90%;
+        max-width: 1000px;
+        display: flex;
+        padding: 1em 0em;
+        margin-top:3em;
+        margin-bottom: 10em;
+        
+        .img{
+            width:35%;
+            
+            img{
+                display: block;
+                width: 100%;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            }
+
+        }
+
+        .desc{
+            width:65%;
+            padding: 1em 0em;
+            padding-left: 2em;
+            
+            p{
+                font-size: 20px;
+                margin:.4em 0em;
+            }
+
+            .rating{
+                flex-direction: row;
+                width: fit-content;
+                color:white;
+                box-shadow: 0 2px 8px rgba(0,0,0,.3);
+                padding:.1em .7em .1em .4em;
+                background-color: rgb(26, 26, 26);
+
+                span{
+                    font-size: 20px;
+                    padding: .2em 0em;
+                    display: flex;
+                    align-items: center;
+                 }
+
+                 .rating-icon{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 2.3em;
+                    height: 2.3em;
+                    margin-left: .3em;
+                }
+            }
+        }
+
+    }
+
+}
+
+
+.separator{
+    width:100%;
+    padding: 3em 0em;
+}
+
+@media all and (max-width:768px){
+
+    .single-movie{
+
+    &__full-description{
+        width: 95%;
+        display: flex;
+        flex-direction: column;
+        padding: 1em 0em;
+        margin-top:3em;
+        margin-bottom: 10em;
+        
+        .img{
+            width:100%;
+            padding-left:2em;
+            
+            img{
+                display: block;
+                width: 65%;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            }
+        }
+
+        .desc{
+            width:100%;
+            padding-right: 1.5em;
+            padding-top:4em;
+      
+            p{
+                font-size: 20px;
+                margin:.4em 0em;
+            }
+
+    }
+
+}
+
+        &__add-fav{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+
+        button{
+            width:180px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h1{
+            margin-bottom: 2em;
+            text-align: center;
+        }
+
+        }
+    }
+}
+
+@media all and (max-width:450px){
+
+    .single-movie{
+
+        &__full-description{
+            margin-bottom: 3.5em;
+
+            .img{
+
+                img{
+                    display: block;
+                    width: 85%;
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+                }
+            }
+        }
+    }
+
+}

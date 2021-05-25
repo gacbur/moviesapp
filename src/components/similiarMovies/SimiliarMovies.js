@@ -14,7 +14,7 @@ const SimiliarMovies = () => {
         <div className="similiar-movies">
             <div className="similiar-movies__content">
                 <h2> You might also like...</h2>
-                <div className="content__similiar-movies">
+                <div className="similiar-movies-items">
                     {similiarMovies && similiarMovies.map(item => (
                         <SimiliarMovie key={item.id} item={item} />
                     ))}

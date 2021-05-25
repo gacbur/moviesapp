@@ -8,10 +8,13 @@ import SingleMovieGallery from '../../components/singleMovieGallery/SingleMovieG
 import SingleMovieCast from '../../components/singleMovieCast/SingleMovieCast'
 import SingleMovieCrew from '../../components/singleMovieCrew/SingleMovieCrew'
 import Loading from '../../components/loading/Loading'
+import GoUpButton from '../../components/goUpButton/GoUpButton'
 
 import { useDispatch, useSelector } from 'react-redux'
 
 import { getSingleMovie, singleMovieLoading, getSimiliarMovies, getSingleMovieGallery, getSingleMovieCrewAndCast } from '../../redux/actions/singleMovieActions'
+
+import { Element } from 'react-scroll'
 
 import './SingleMovie.css'
 
@@ -109,10 +112,10 @@ const SingleMovie = (props) => {
             {
                 !singleMovie_loading ?
                     <>
-                        <div className="single-movie__main-image">
+                        <div className="single-movie-main-image">
                             <MainImage image={`${process.env.REACT_APP_IMAGE_URL}w1280${backdrop_path}`} />
                         </div>
-                        <div className="single-movie">
+                        <Element className="single-movie" name="single-movie">
                             <div className="single-movie__add-fav">
                                 <h1>{title}</h1>
                                 <FavoriteBtn
@@ -122,15 +125,15 @@ const SingleMovie = (props) => {
                                 />
                             </div>
                             <div className="single-movie__full-description">
-                                <div className="full-description__img">
+                                <div className="img">
                                     <img src={backdrop_path && `${process.env.REACT_APP_IMAGE_URL}w500${poster_path}`} alt={`${title}`} />
                                 </div>
-                                <div className="full-description__desc">
+                                <div className="desc">
                                     <p><strong>Description: </strong>{overview}</p>
                                     <p><strong>Original language: </strong>{original_language}</p>
                                     <p><strong>Release date: </strong>{release_date}</p>
                                     <p><strong>Status: </strong>{status}</p>
-                                    <div className="desc__avg-rating"><span><strong>Average Rating: </strong><div style={{ backgroundColor: ratingColor }} className="avg-rating__icon">{vote_average}</div></span></div>
+                                    <div className="rating"><span><strong>Average Rating: </strong><div style={{ backgroundColor: ratingColor }} className="rating-icon">{vote_average}</div></span></div>
                                     <p><strong>Genre: </strong>{genres ? genres[0].name : 'no data... Sorry'}</p>
                                     <p><strong>Age: </strong>{adult ? '18+' : 'below 18'}</p>
                                 </div>
@@ -139,7 +142,10 @@ const SingleMovie = (props) => {
                             <SingleMovieCast />
                             <SingleMovieCrew />
                             <SimiliarMovies />
-                        </div>
+                            <GoUpButton
+                                scrollToElementName={'single-movie'}
+                            />
+                        </Element>
                     </>
                     :
                     <div className="single-movie__loading">

@@ -1,4 +1,5 @@
 .categories {
+  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -74,6 +75,8 @@
 }
 
 .categories__movies {
+  -webkit-animation: ItemsOpacity .4s;
+          animation: ItemsOpacity .4s;
   max-width: 1450px;
   min-width: -webkit-fit-content;
   min-width: -moz-fit-content;

@@ -34,11 +34,10 @@ const SearchBar = ({ width, setSideDrawerShow }) => {
     useEffect(() => {
         if (movie.length > 0) {
             const getSearchingResults = async (movie) => {
-                const API = `${process.env.REACT_APP_API_URL}search/movie?api_key=${process.env.REACT_APP_API_KEY}&query=${movie}`
+                const API = `${process.env.REACT_APP_API_URL}search/movie?api_key=${process.env.REACT_APP_API_KEY}&query=${movie}&language=en`
                 const response = await fetch(API)
                 const responseJson = await response.json()
                 if (responseJson.results) {
-                    console.log(responseJson.results)
                     setResults(responseJson.results)
                 }
             }
@@ -51,10 +50,8 @@ const SearchBar = ({ width, setSideDrawerShow }) => {
 
         const getMovie = () => {
             if (results.length > 0) {
-                const singleMovie = results.filter(item => item.title === movieOption)
-                console.log(singleMovie)
-                if (singleMovie[0]) {
-                    history.push(`/movie/${singleMovie[0].id}`)
+                if (movieOption) {
+                    history.push(`/movie/${movieOption}`)
                 }
                 else {
                     history.push('/missing_info')
@@ -78,9 +75,8 @@ const SearchBar = ({ width, setSideDrawerShow }) => {
                 id="free-solo-2-demo"
                 disableClearable
                 options={results.map(item => item.original_title)}
-                value={movieOption}
                 onChange={(event, newValue) => {
-                    setMovieOption(newValue)
+                    setMovieOption(String(results.filter(movie => movie.original_title === newValue)[0].id))
                 }}
                 renderInput={(params) => (
                     <TextField style={{ Color: 'white' }}

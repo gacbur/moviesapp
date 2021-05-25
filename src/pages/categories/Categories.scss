@@ -1,4 +1,6 @@
+
 .categories{
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -53,6 +55,7 @@
     }
 
      &__movies{
+        animation: ItemsOpacity .4s ;
         max-width: 1450px;
         min-width: fit-content;
         border-top: 3px lightgray solid;

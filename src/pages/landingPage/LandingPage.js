@@ -4,11 +4,13 @@ import axios from 'axios'
 import MoviesCarousel from '../../components/moviesCarousel/MoviesCarousel'
 import MovieItem from '../../components/movieItem/MovieItem'
 import Loading from '../../components/loading/Loading'
-
+import GoUpButton from '../../components/goUpButton/GoUpButton'
 
 import { getMovies, moviesLoading } from '../../redux/actions/moviesActions'
 
 import { useSelector, useDispatch } from 'react-redux'
+
+import { Element } from 'react-scroll'
 
 import './LandingPage.css'
 
@@ -79,8 +81,7 @@ const LandingPage = () => {
             <div className="movies-carousel-cnt">
                 <MoviesCarousel />
             </div>
-
-            <div className="landing-page">
+            <Element className="landing-page" name="landing-page">
                 <h1>Movies</h1>
                 <div className="landing-page__category-btns">
                     <button
@@ -133,7 +134,10 @@ const LandingPage = () => {
                 <div className="landing-page__loading-movies">
                     {movies_loaded && <Loading />}
                 </div>
-            </div>
+                <GoUpButton
+                    scrollToElementName={'landing-page'}
+                />
+            </Element>
         </>
     )
 }

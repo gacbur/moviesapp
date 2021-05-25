@@ -53,7 +53,7 @@ const Navbar = () => {
                 </ul>
                 <div
                     className={`links__search-bar-cnt ${show ? '' : 'hide'}`}>
-                    <SearchBar width={300} />
+                    <SearchBar width={290} />
                 </div>
             </div >
             <div className={`sidedrawer ${sideToggle ? 'show' : ''}`}>

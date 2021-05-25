@@ -1,0 +1,47 @@
+.go-up-btn {
+  opacity: 0;
+  visibility: hidden;
+  position: fixed;
+  cursor: pointer;
+  z-index: 1000;
+  right: 80px;
+  bottom: 80px;
+  width: 60px;
+  height: 60px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: rgba(200, 200, 200, 0.7);
+  border: none;
+  border-radius: 2px;
+  -webkit-transition: .3s ease-out;
+  transition: .3s ease-out;
+}
+
+@media all and (max-width: 660px) {
+  .go-up-btn {
+    right: 25px;
+    bottom: 60px;
+  }
+}
+
+.go-up-btn:hover {
+  background-color: rgba(215, 215, 215, 0.7);
+}
+
+.go-up-btn.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.go-up-btn .arrow {
+  font-size: 30px;
+  color: white;
+}
+/*# sourceMappingURL=GoUpButton.css.map */

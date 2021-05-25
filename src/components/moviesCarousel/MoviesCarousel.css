@@ -192,7 +192,7 @@
 
 @media all and (max-width: 860px) and (max-width: 650px) {
   .movies-carousel .carousel .img-overlay {
-    bottom: -15px;
+    bottom: -30px;
     width: 490px;
     min-height: 130px;
     max-height: 130px;
@@ -207,7 +207,7 @@
 
 @media all and (max-width: 860px) and (max-width: 550px) {
   .movies-carousel .carousel .img-overlay {
-    bottom: 0px;
+    bottom: -30px;
     width: 410px;
     padding: .5em .7em;
     min-height: 110px;
@@ -224,7 +224,7 @@
 @media all and (max-width: 860px) and (max-width: 420px) {
   .movies-carousel .carousel .img-overlay {
     width: 320px;
-    bottom: 30px;
+    bottom: 10px;
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
@@ -319,6 +319,72 @@
 @media all and (max-width: 330px) {
   .movies-carousel .carousel__item-loading {
     height: 270px;
+  }
+}
+
+.carousel .control-next.control-arrow, .carousel .control-next.control-arrow:hover {
+  background-color: transparent;
+  padding-right: 1em;
+  right: 0px;
+}
+
+@media all and (max-width: 600px) {
+  .carousel .control-next.control-arrow, .carousel .control-next.control-arrow:hover {
+    padding-right: .5em;
+  }
+}
+
+.carousel .control-prev.control-arrow, .carousel .control-prev.control-arrow:hover {
+  background-color: transparent;
+  padding-left: 1em;
+  left: 0px;
+}
+
+@media all and (max-width: 600px) {
+  .carousel .control-prev.control-arrow, .carousel .control-prev.control-arrow:hover {
+    padding-left: .5em;
+  }
+}
+
+.carousel .control-arrow, .carousel.carousel-slider .control-arrow {
+  opacity: 1;
+}
+
+.carousel .control-arrow:hover, .carousel.carousel-slider .control-arrow:hover {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.carousel .control-next.control-arrow:before {
+  content: '';
+  border: solid white;
+  border-width: 0 8px 8px 0;
+  display: inline-block;
+  padding: 11px;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+@media all and (max-width: 600px) {
+  .carousel .control-next.control-arrow:before {
+    padding: 6px;
+    border-width: 0 4px 4px 0;
+  }
+}
+
+.carousel .control-prev.control-arrow:before {
+  content: '';
+  border: solid white;
+  border-width: 0 8px 8px 0;
+  display: inline-block;
+  padding: 11px;
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+
+@media all and (max-width: 600px) {
+  .carousel .control-prev.control-arrow:before {
+    padding: 6px;
+    border-width: 0 4px 4px 0;
   }
 }
 /*# sourceMappingURL=MoviesCarousel.css.map */

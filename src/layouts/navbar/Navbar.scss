@@ -7,19 +7,20 @@
     &__logo{
         color:white;
         position: relative;
-        width: 10em;
-        margin-left:3em;
+        width: 9em;
+        margin-left:2em;
     }
     
     &__hamburger{
         cursor: pointer;
         display: none;
         position: absolute;
-        right: 5%;
+        font-size: larger;
+        right: 4%;
     }
     
     &__logo-link{
-        padding: 1em 0em;
+        padding: 1.5em 0em;
         text-decoration: none;
     }
     
@@ -37,6 +38,11 @@
 
         li{
             list-style: none;
+            transition: .25s;
+
+            &:hover{
+                background-color: rgb(58,58,58);
+            }
         }
     
         a{
@@ -45,7 +51,7 @@
             text-decoration: none;
             display: block;
             color:white;
-            padding:1.8em 2em;
+            padding:1.8em 1.4em;
 
         }
 
@@ -86,9 +92,9 @@
             color:white;
             background-color: rgb(26, 26, 26);
             border:none;
-            padding:.5em .6em;
-            font-size: 28px;
-            right: 5%;
+            padding:.4em .5em;
+            font-size: 37px;
+            right: 4%;
 
         }
     

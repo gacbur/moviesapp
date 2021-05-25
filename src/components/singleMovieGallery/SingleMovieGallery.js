@@ -20,7 +20,6 @@ const SingleMovieGallery = () => {
                 showIndicators={false}
                 stopOnHover
                 selectedItem={0}
-
             >
                 {galleryItems.map((galleryItem, index) => {
                     return (
