@@ -1,0 +1,43 @@
+.similiar-movie{
+    position: relative;
+    width: 230px;
+    cursor: pointer;
+    transition: .3s;
+    box-shadow: 0 2px 8px rgba(0,0,0,.3);
+    margin:1em 1em;
+    
+    &:hover{
+        transform:scale(1.05);
+        transition: .3s
+    }
+
+    img{
+        width:100%;
+        display: block;
+    }
+
+    &__overlay{
+        position: absolute;
+        display: flex;
+        align-items: center;
+        padding:.6em 1em;
+        width:100%;
+        height: 60px;
+        bottom:0px;
+        left:0px;
+        background-color: rgba(0,0,0,.8);
+        border-top-right-radius: 40px;
+      
+        h5{
+          font-size: 15px;
+          flex-grow: 1;
+          color:lightgray;
+          margin-right: 1em;
+          word-break: break-word;
+        }
+      
+      }
+}
+
+
+

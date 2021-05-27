@@ -107,13 +107,14 @@ const SingleMovie = (props) => {
         getRatingColor()
     }, [singleMovie_loading, vote_average])
 
+
     return (
         <>
             {
                 !singleMovie_loading ?
                     <>
                         <div className="single-movie-main-image">
-                            <MainImage image={`${process.env.REACT_APP_IMAGE_URL}w1280${backdrop_path}`} />
+                            <MainImage image={backdrop_path !== null ? `${process.env.REACT_APP_IMAGE_URL}w1280${backdrop_path}` : '/images/image_not_available.png'} />
                         </div>
                         <Element className="single-movie" name="single-movie">
                             <div className="single-movie__add-fav">
@@ -126,7 +127,7 @@ const SingleMovie = (props) => {
                             </div>
                             <div className="single-movie__full-description">
                                 <div className="img">
-                                    <img src={backdrop_path && `${process.env.REACT_APP_IMAGE_URL}w500${poster_path}`} alt={`${title}`} />
+                                    <img src={poster_path !== null ? `${process.env.REACT_APP_IMAGE_URL}w500${poster_path}` : '/images/poster_not_available.png'} alt={`${title}`} />
                                 </div>
                                 <div className="desc">
                                     <p><strong>Description: </strong>{overview}</p>
@@ -134,7 +135,7 @@ const SingleMovie = (props) => {
                                     <p><strong>Release date: </strong>{release_date}</p>
                                     <p><strong>Status: </strong>{status}</p>
                                     <div className="rating"><span><strong>Average Rating: </strong><div style={{ backgroundColor: ratingColor }} className="rating-icon">{vote_average}</div></span></div>
-                                    <p><strong>Genre: </strong>{genres ? genres[0].name : 'no data... Sorry'}</p>
+                                    {genres ? <p><strong>Genre: </strong>{genres ? genres[0].name : 'no data... Sorry'}</p> : null}
                                     <p><strong>Age: </strong>{adult ? '18+' : 'below 18'}</p>
                                 </div>
                             </div>

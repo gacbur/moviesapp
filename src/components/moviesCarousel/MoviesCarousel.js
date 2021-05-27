@@ -38,16 +38,17 @@ const MoviesCarousel = () => {
     }, [])
 
     useEffect(() => {
-        const startCarousel = () => {
-            setTimeout(() => {
+        let mounted = true
+        setTimeout(() => {
+            if (mounted) {
                 setStartingMovie(1)
-            }, 5000)
-        }
+            }
+        }, 5000)
 
-        if (movies.length > 0) {
-            startCarousel()
+        return () => {
+            mounted = false
         }
-    }, [movies])
+    }, [])
 
     const handleGoToMovie = (index) => {
         const projectItemId = movies[index].id

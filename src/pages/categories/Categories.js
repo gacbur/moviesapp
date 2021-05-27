@@ -29,12 +29,8 @@ const Categories = () => {
     const movies_loading = useSelector(state => state.categories.moviesByCategory_loading)
     const movies_failed = useSelector(state => state.categories.moviesByCategory_failed)
 
-    const MoviesByGenreUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}`;
-
-    const genreUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.REACT_APP_API_KEY}`;
-
     useEffect(() => {
-        axios.get(genreUrl)
+        axios.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.REACT_APP_API_KEY}`)
             .then(res => res.data.genres)
             .then(genres => setGenres([...genres]))
     }, [])
@@ -52,13 +48,14 @@ const Categories = () => {
     useEffect(() => {
         dispatch(moviesLoading(true))
         dispatch(getMoviesError(false))
-        axios.get(MoviesByGenreUrl, { params: { page: loadMorePages, with_genres: pickedGenres } })
+        axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}`, { params: { page: loadMorePages, with_genres: pickedGenres } })
             .then(res => res.data.results)
             .then(results => {
                 dispatch(getMovies([...results]))
                 dispatch(moviesLoading(false))
             })
             .catch(e => {
+                console.log(e)
                 dispatch(getMoviesError(true))
                 dispatch(moviesLoading(false))
             })
@@ -67,7 +64,7 @@ const Categories = () => {
     useEffect(() => {
         dispatch(moviesLoading(true))
         dispatch(getMoviesError(false))
-        axios.get(MoviesByGenreUrl, { params: { page: loadMorePages, with_genres: String(pickedGenres) } })
+        axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}`, { params: { page: loadMorePages, with_genres: String(pickedGenres) } })
             .then(res => res.data)
             .then(data => {
                 if (data.total_pages > 1) {
@@ -83,16 +80,17 @@ const Categories = () => {
                 }
             })
             .catch(e => {
+                console.log(e)
                 dispatch(getMoviesError(true))
                 dispatch(moviesLoading(false))
             })
-    }, [pickedGenres])
+    }, [pickedGenres, loadMorePages, dispatch])
 
     useEffect(() => {
         if (loadMorePages !== 1) {
             dispatch(moviesLoading(true))
             dispatch(moviesFailed(false))
-            axios.get(MoviesByGenreUrl, { params: { page: loadMorePages, with_genres: pickedGenres } })
+            axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}`, { params: { page: loadMorePages, with_genres: pickedGenres } })
                 .then(res => res.data.results)
                 .then(results => {
                     dispatch(getMovies([...moviesByCategory, ...results]))
@@ -102,11 +100,12 @@ const Categories = () => {
                     }
                 })
                 .catch(e => {
+                    console.log(e)
                     dispatch(getMoviesError(true))
                     dispatch(moviesLoading(false))
                 })
         }
-    }, [loadMorePages])
+    }, [loadMorePages, moviesByCategory, pickedGenres, dispatch])
 
     const handleLoadMoreMovies = () => {
         setLoadMorePages(prevState => prevState + 1)
@@ -136,6 +135,7 @@ const Categories = () => {
                                 key={index}
                                 image={movie.poster_path && `${process.env.REACT_APP_IMAGE_URL}w500${movie.poster_path}`}
                                 title={movie.title}
+                                vote_average={movie.vote_average}
                                 id={movie.id}
                             />
                         )

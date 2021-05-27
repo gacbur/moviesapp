@@ -25,11 +25,9 @@ const LandingPage = () => {
     const [loadMorePages, setLoadMorePages] = useState(1)
 
 
-    const BASE_URL = `${process.env.REACT_APP_API_URL}movie/${category}?api_key=${process.env.REACT_APP_API_KEY}`
-
     useEffect(() => {
         dispatch(moviesLoading(true))
-        axios.get(BASE_URL, { params: { language: 'en-US', page: loadMorePages } })
+        axios.get(`${process.env.REACT_APP_API_URL}movie/${category}?api_key=${process.env.REACT_APP_API_KEY}`, { params: { language: 'en-US', page: loadMorePages } })
             .then(res => res.data.results)
             .then(results => {
                 dispatch(getMovies([...results]))
@@ -43,7 +41,7 @@ const LandingPage = () => {
     useEffect(() => {
         if (loadMorePages !== 1) {
             dispatch(moviesLoading(true))
-            axios.get(BASE_URL, { params: { language: 'en-US', page: loadMorePages } })
+            axios.get(`${process.env.REACT_APP_API_URL}movie/${category}?api_key=${process.env.REACT_APP_API_KEY}`, { params: { language: 'en-US', page: loadMorePages } })
                 .then(res => res.data.results)
                 .then(results => {
                     dispatch(getMovies([...movies, ...results]))
@@ -57,7 +55,7 @@ const LandingPage = () => {
 
     useEffect(() => {
         dispatch(moviesLoading(true))
-        axios.get(BASE_URL, { params: { language: 'en-US', page: loadMorePages } })
+        axios.get(`${process.env.REACT_APP_API_URL}movie/${category}?api_key=${process.env.REACT_APP_API_KEY}`, { params: { language: 'en-US', page: loadMorePages } })
             .then(res => res.data.results)
             .then(results => {
                 dispatch(getMovies([...results]))
@@ -120,6 +118,7 @@ const LandingPage = () => {
                                 key={index}
                                 image={item.poster_path && `${process.env.REACT_APP_IMAGE_URL}w500${item.poster_path}`}
                                 title={item.title}
+                                vote_average={item.vote_average}
                                 id={item.id}
                             />
                         )

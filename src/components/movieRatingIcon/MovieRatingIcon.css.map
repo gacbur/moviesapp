@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,kBAAkB,CAAA;EACd,SAAS,EAAC,IAAI;EACd,UAAU,EAAC,IAAI;EACf,aAAa,EAAE,IAAI;EACnB,UAAU,EAAE,CAAC,CAAC,GAAG,CAAC,GAAG,CAAC,wBAAoB;EAC1C,OAAO,EAAE,IAAI;EACb,WAAW,EAAE,MAAM;EACnB,eAAe,EAAE,MAAM;CAK1B;;AAHI,AAAD,0BAAS,CAAA;EACL,KAAK,EAAC,KAAK;CACd",
+    "sources": [
+        "MovieRatingIcon.scss"
+    ],
+    "names": [],
+    "file": "MovieRatingIcon.css"
+}

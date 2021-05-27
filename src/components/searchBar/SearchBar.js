@@ -47,16 +47,9 @@ const SearchBar = ({ width, setSideDrawerShow }) => {
 
 
     useEffect(() => {
-
         const getMovie = () => {
-            if (results.length > 0) {
-                if (movieOption) {
-                    history.push(`/movie/${movieOption}`)
-                }
-                else {
-                    history.push('/missing_info')
-                }
-
+            if (movieOption !== '') {
+                history.push(`/movie/${movieOption}`)
                 if (setSideDrawerShow) {
                     setSideDrawerShow(false)
                 }
@@ -64,7 +57,15 @@ const SearchBar = ({ width, setSideDrawerShow }) => {
         }
 
         getMovie()
-    }, [movieOption])
+    }, [movieOption, history, setSideDrawerShow])
+
+    useEffect(() => {
+        return history.listen(() => {
+            setMovie('')
+            setResults([])
+            setMovieOption('')
+        })
+    }, [history])
 
     return (
         <div className="search-bar">
@@ -74,9 +75,11 @@ const SearchBar = ({ width, setSideDrawerShow }) => {
                 classes={classes}
                 id="free-solo-2-demo"
                 disableClearable
+                value={movie}
                 options={results.map(item => item.original_title)}
                 onChange={(event, newValue) => {
                     setMovieOption(String(results.filter(movie => movie.original_title === newValue)[0].id))
+
                 }}
                 renderInput={(params) => (
                     <TextField style={{ Color: 'white' }}
@@ -85,7 +88,9 @@ const SearchBar = ({ width, setSideDrawerShow }) => {
                         margin="normal"
                         variant="outlined"
                         value={movie}
-                        onChange={(e) => setMovie(e.target.value)}
+                        onChange={(e) => {
+                            setMovie(e.target.value)
+                        }}
                         InputProps={{ ...params.InputProps, type: 'search' }}
                     />
                 )}
