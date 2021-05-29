@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import axios from 'axios'
 
-import { getMovies, getMoviesError, moviesLoading, moviesFailed, getGenres, pickGenres } from '../../redux/actions/categoriesActions'
+import { getMovies, getMoviesError, moviesLoading, moviesFailed, getGenres, pickGenres } from '../../redux/actions/genresActions'
 
 import MovieItem from '../../components/movieItem/MovieItem'
 import Loading from '../../components/loading/Loading'
@@ -12,21 +12,21 @@ import GoUpButton from '../../components/goUpButton/GoUpButton'
 
 import { Element } from 'react-scroll'
 
-import './Categories.css'
+import './Genres.css'
 
-const Categories = () => {
+const Genres = () => {
 
     const dispatch = useDispatch()
 
     const [loadMorePages, setLoadMorePages] = useState(1)
     const [hasNextPage, setHasNextPage] = useState(true)
 
-    const moviesByCategory = useSelector(state => state.categories.moviesByCategory)
-    const moviesByCategory_error = useSelector(state => state.categories.moviesByCategory_error)
-    const movies_loading = useSelector(state => state.categories.moviesByCategory_loading)
-    const movies_failed = useSelector(state => state.categories.moviesByCategory_failed)
-    const genres = useSelector(state => state.categories.genres)
-    const pickedGenres = useSelector(state => state.categories.pickedGenres)
+    const moviesByGenre = useSelector(state => state.genres.moviesByGenre)
+    const moviesByGenre_error = useSelector(state => state.genres.moviesByGenre_error)
+    const movies_loading = useSelector(state => state.genres.moviesByGenre_loading)
+    const movies_failed = useSelector(state => state.genres.moviesByGenre_failed)
+    const genres = useSelector(state => state.genres.genres)
+    const pickedGenres = useSelector(state => state.genres.pickedGenres)
 
     useEffect(() => {
         axios.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.REACT_APP_API_KEY}`)
@@ -76,7 +76,7 @@ const Categories = () => {
             axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}`, { params: { page: loadMorePages, with_genres: pickedGenres } })
                 .then(res => res.data.results)
                 .then(results => {
-                    dispatch(getMovies([...moviesByCategory, ...results]))
+                    dispatch(getMovies([...moviesByGenre, ...results]))
                     dispatch(moviesLoading(false))
                     if (results.length === 0) {
                         dispatch(moviesFailed(true))
@@ -111,8 +111,8 @@ const Categories = () => {
                 }) : <Loading />}
             </div>
             <div className="categories__movies">
-                {moviesByCategory.length > 0 &&
-                    moviesByCategory.map((movie, index) => {
+                {moviesByGenre.length > 0 &&
+                    moviesByGenre.map((movie, index) => {
                         return (
                             <MovieItem
                                 key={index}
@@ -128,10 +128,10 @@ const Categories = () => {
             {movies_failed && <div className="categories__movies-failed">
                 <h2>We couldnt't find movies with this specific genres, sorry!</h2>
             </div>}
-            {moviesByCategory_error && <div className="categories__movies-error">
+            {moviesByGenre_error && <div className="categories__movies-error">
                 <h2>Sorry, we are not able to display movies due to error, try refreshing the page!</h2>
             </div>}
-            {!movies_failed && !moviesByCategory_error ? <div className="categories__loadmore-btn-wrapper">
+            {!movies_failed && !moviesByGenre_error ? <div className="categories__loadmore-btn-wrapper">
                 {hasNextPage && <button
                     onClick={() => handleLoadMoreMovies()}
                 >
@@ -148,4 +148,4 @@ const Categories = () => {
     )
 }
 
-export default Categories
+export default Genres

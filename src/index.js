@@ -14,7 +14,7 @@ import { Provider } from 'react-redux'
 import { moviesReducer } from './redux/reducers/moviesReducer'
 import { singleMovieReducer } from './redux/reducers/singleMovieReducer'
 import { favMoviesReducer } from './redux/reducers/favMoviesReducer'
-import { categoriesReducer } from './redux/reducers/categoriesReducer'
+import { genresReducer } from './redux/reducers/genresReducer'
 
 import { ThemeProvider } from '@material-ui/core/styles'
 import theme from './material-ui/theme'
@@ -23,7 +23,7 @@ const reducers = combineReducers({
   movies: moviesReducer,
   singleMovie: singleMovieReducer,
   favMovies: favMoviesReducer,
-  categories: categoriesReducer
+  genres: genresReducer
 })
 
 const store = createStore(

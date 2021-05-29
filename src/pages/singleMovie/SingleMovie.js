@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 
 import { getSingleMovie, singleMovieLoading, getSimiliarMovies, getSingleMovieGallery, getSingleMovieCrewAndCast } from '../../redux/actions/singleMovieActions'
-import { pickGenres } from '../../redux/actions/categoriesActions'
+import { pickGenres } from '../../redux/actions/genresActions'
 
 import { Element } from 'react-scroll'
 

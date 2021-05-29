@@ -29,7 +29,7 @@ const Navbar = () => {
                 </button>
                 <ul className="navbar__links">
                     <li>
-                        <NavLink to="/categories">Categories</NavLink>
+                        <NavLink to="/genres">Genres</NavLink>
                     </li>
                     <li>
                         <NavLink to="/favorites">Favorites</NavLink>
@@ -46,7 +46,7 @@ const Navbar = () => {
                         <Link to="/">Home</Link>
                     </li>
                     <li>
-                        <NavLink to="/categories">Categories</NavLink>
+                        <NavLink to="/genres">Genres</NavLink>
                     </li>
                     <li>
                         <Link to="/favorites">Favorites <BsFillHeartFill className="sidedrawer__links__heart" /></Link>

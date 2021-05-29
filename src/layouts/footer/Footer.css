@@ -1,40 +1,48 @@
-.footer{
-    background-color: rgb(26, 26, 26);
-    width: 100%;
-    padding: 2em;
-    border-top: 1px solid darkgrey;
+.footer {
+  background-color: #1a1a1a;
+  width: 100%;
+  padding: 2em;
+  border-top: 1px solid darkgrey;
 }
 
-.footer__text{
-    color:white;
-    display: flex;
-    justify-content: center;
-    font-size: 16px;
-    font-weight: 700;
+.footer__text {
+  color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-size: 16px;
+  font-weight: 700;
 }
 
-.footer__icons{
-    display: flex;
-    justify-content: center;
-    margin-top: 1em;
+.footer__icons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 1em;
 }
 
-.footer__icons a + a{
-    margin-left: 1em;
+.footer__icons a + a {
+  margin-left: 1em;
 }
 
-.icon{
-    cursor: pointer;
-    color:white;
-    font-size: 37px;
-    transition: .2s;
+.footer__icons .icon {
+  cursor: pointer;
+  color: white;
+  font-size: 37px;
+  -webkit-transition: .2s;
+  transition: .2s;
 }
 
-.icon:hover{
-    transform: translateY(-8%) scale(1.05);
-    transition: .2s;
+.footer__icons .icon:hover {
+  -webkit-transform: translateY(-8%) scale(1.05);
+          transform: translateY(-8%) scale(1.05);
+  -webkit-transition: .2s;
+  transition: .2s;
 }
-
-
-
-
+/*# sourceMappingURL=Footer.css.map */

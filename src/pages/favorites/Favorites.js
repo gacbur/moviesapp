@@ -30,11 +30,11 @@ const Favorites = () => {
         <div className="favorites">
             <div className="favorites__content">
                 {favMovies.length > 0 ?
-                    <TableContainer className="content__table-cnt" component={Paper}>
-                        <Table className="content__table" aria-label="simple table">
+                    <TableContainer className="favorites__table-cnt" component={Paper}>
+                        <Table className="favorites__table" aria-label="simple table">
                             <TableHead>
-                                <TableRow className="content__table-row">
-                                    <TableCell><p>Movie Name</p></TableCell>
+                                <TableRow className="favorites__table-row">
+                                    <TableCell className="cell"><p>Movie Name</p></TableCell>
                                     <TableCell align="right"><p>Poster</p></TableCell>
                                     <TableCell align="right"><p>Action</p></TableCell>
                                 </TableRow>
@@ -47,14 +47,14 @@ const Favorites = () => {
                                         </TableCell>
                                         <TableCell align="right">
                                             <img
-                                                className="favMovie-table-img"
+                                                className="table-img"
                                                 src={`${process.env.REACT_APP_IMAGE_URL}w500${item.moviePoster}`}
                                                 alt={item.movieTitle}
                                             ></img>
                                         </TableCell>
                                         <TableCell align="right">
                                             <button
-                                                className="table__button-del"
+                                                className="button-del"
                                                 onClick={() => handleDeleteFavMovie(item.movieId)}>Unfavorite</button></TableCell>
                                     </TableRow>
                                 ))}
