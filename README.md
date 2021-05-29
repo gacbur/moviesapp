@@ -1,4 +1,4 @@
-# Movies viewer
+# Movies App
 
 ![screen1](https://user-images.githubusercontent.com/46655309/120081103-07ab8d00-c0bc-11eb-807a-d07370d945d7.JPG)
 ![screen2](https://user-images.githubusercontent.com/46655309/120081104-08dcba00-c0bc-11eb-885a-73ca5e842dbb.JPG)
