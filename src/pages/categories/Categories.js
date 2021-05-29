@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import axios from 'axios'
 
-import { getMovies, getMoviesError, moviesLoading, moviesFailed } from '../../redux/actions/categoriesActions'
+import { getMovies, getMoviesError, moviesLoading, moviesFailed, getGenres, pickGenres } from '../../redux/actions/categoriesActions'
 
 import MovieItem from '../../components/movieItem/MovieItem'
 import Loading from '../../components/loading/Loading'
@@ -18,9 +18,6 @@ const Categories = () => {
 
     const dispatch = useDispatch()
 
-    const [genres, setGenres] = useState([])
-    const [pickedGenres, setPickedGenres] = useState([28])
-
     const [loadMorePages, setLoadMorePages] = useState(1)
     const [hasNextPage, setHasNextPage] = useState(true)
 
@@ -28,38 +25,24 @@ const Categories = () => {
     const moviesByCategory_error = useSelector(state => state.categories.moviesByCategory_error)
     const movies_loading = useSelector(state => state.categories.moviesByCategory_loading)
     const movies_failed = useSelector(state => state.categories.moviesByCategory_failed)
+    const genres = useSelector(state => state.categories.genres)
+    const pickedGenres = useSelector(state => state.categories.pickedGenres)
 
     useEffect(() => {
         axios.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.REACT_APP_API_KEY}`)
             .then(res => res.data.genres)
-            .then(genres => setGenres([...genres]))
+            .then(genres => dispatch(getGenres([...genres])))
     }, [])
 
     const handleGenres = (genreId) => {
         const isInGenres = pickedGenres.find(Id => Id === genreId)
         if (isInGenres) {
-            setPickedGenres([...pickedGenres.filter(Id => Id !== genreId)])
+            dispatch(pickGenres([...pickedGenres.filter(Id => Id !== genreId)]))
         }
         else {
-            setPickedGenres([...pickedGenres, genreId])
+            dispatch(pickGenres([...pickedGenres, genreId]))
         }
     }
-
-    useEffect(() => {
-        dispatch(moviesLoading(true))
-        dispatch(getMoviesError(false))
-        axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}`, { params: { page: loadMorePages, with_genres: pickedGenres } })
-            .then(res => res.data.results)
-            .then(results => {
-                dispatch(getMovies([...results]))
-                dispatch(moviesLoading(false))
-            })
-            .catch(e => {
-                console.log(e)
-                dispatch(getMoviesError(true))
-                dispatch(moviesLoading(false))
-            })
-    }, [])
 
     useEffect(() => {
         dispatch(moviesLoading(true))
@@ -84,7 +67,7 @@ const Categories = () => {
                 dispatch(getMoviesError(true))
                 dispatch(moviesLoading(false))
             })
-    }, [pickedGenres, loadMorePages, dispatch])
+    }, [pickedGenres])
 
     useEffect(() => {
         if (loadMorePages !== 1) {
@@ -105,7 +88,7 @@ const Categories = () => {
                     dispatch(moviesLoading(false))
                 })
         }
-    }, [loadMorePages, moviesByCategory, pickedGenres, dispatch])
+    }, [loadMorePages])
 
     const handleLoadMoreMovies = () => {
         setLoadMorePages(prevState => prevState + 1)

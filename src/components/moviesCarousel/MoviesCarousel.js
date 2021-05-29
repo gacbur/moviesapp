@@ -71,12 +71,14 @@ const MoviesCarousel = () => {
                         showIndicators={false}
                         showThumbs={false}
                         stopOnHover
-                        onClickItem={(index) => handleGoToMovie(index)}
                     >
-                        {movies.map(movie => {
+                        {movies.map((movie, index) => {
                             return (
-                                <div className="carousel__item-cnt" key={movie.id}>
-                                    <div className="carousel__item" style={{ backgroundImage: `url(${process.env.REACT_APP_IMAGE_URL}w1280${movie.imageUrl})` }}>
+                                <div
+                                    className="carousel__item-cnt" key={movie.id}>
+                                    <div
+                                        onClick={() => handleGoToMovie(index)}
+                                        className="carousel__item" style={{ backgroundImage: `url(${process.env.REACT_APP_IMAGE_URL}w1280${movie.imageUrl})` }}>
                                     </div>
                                     <div className="img-overlay">
                                         <h2>

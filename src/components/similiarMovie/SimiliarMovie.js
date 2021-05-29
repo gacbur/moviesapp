@@ -9,8 +9,8 @@ import './SimiliarMovie.css'
 
 const SimiliarMovie = ({ item }) => {
     return (
-        <Link to={`/movie/${item.id}`}>
-            <div className="similiar-movie">
+        <div className="similiar-movie">
+            <Link to={`/movie/${item.id}`}>
                 <img src={item.poster_path !== null ? `${process.env.REACT_APP_IMAGE_URL}w500${item.poster_path}` : '/images/poster_not_available.png'} alt={`${item.title}`} />
                 <div className="similiar-movie__overlay">
                     <h5>
@@ -18,8 +18,8 @@ const SimiliarMovie = ({ item }) => {
                     </h5>
                     <MovieRatingIcon vote_average={item.vote_average} />
                 </div>
-            </div>
-        </Link>
+            </Link>
+        </div>
     )
 }
 

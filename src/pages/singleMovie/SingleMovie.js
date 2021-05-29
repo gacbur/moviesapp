@@ -1,6 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import Axios from 'axios'
 
+import { useDispatch, useSelector } from 'react-redux'
+
+import { useHistory } from 'react-router'
+
+import { getSingleMovie, singleMovieLoading, getSimiliarMovies, getSingleMovieGallery, getSingleMovieCrewAndCast } from '../../redux/actions/singleMovieActions'
+import { pickGenres } from '../../redux/actions/categoriesActions'
+
+import { Element } from 'react-scroll'
+
 import MainImage from '../../components/mainImage/MainImage'
 import FavoriteBtn from '../../components/favoriteBtn/FavoriteBtn'
 import SimiliarMovies from '../../components/similiarMovies/SimiliarMovies'
@@ -10,21 +19,19 @@ import SingleMovieCrew from '../../components/singleMovieCrew/SingleMovieCrew'
 import Loading from '../../components/loading/Loading'
 import GoUpButton from '../../components/goUpButton/GoUpButton'
 
-import { useDispatch, useSelector } from 'react-redux'
-
-import { getSingleMovie, singleMovieLoading, getSimiliarMovies, getSingleMovieGallery, getSingleMovieCrewAndCast } from '../../redux/actions/singleMovieActions'
-
-import { Element } from 'react-scroll'
-
 import './SingleMovie.css'
 
 const SingleMovie = (props) => {
 
     const dispatch = useDispatch()
+    const history = useHistory()
 
     const singleMovieId = props.match.params.id
 
     const [ratingColor, setRatingColor] = useState()
+
+    const singleMovie = useSelector(state => state.singleMovie.singleMovie)
+    const singleMovie_loading = useSelector(state => state.singleMovie.singleMovie_loading)
 
     useEffect(() => {
 
@@ -69,12 +76,7 @@ const SingleMovie = (props) => {
             }).catch(err =>
                 console.log("Failed getting single movie item" + err)
             )
-
-
     }, [singleMovieId, dispatch])
-
-    const singleMovie = useSelector(state => state.singleMovie.singleMovie)
-    const singleMovie_loading = useSelector(state => state.singleMovie.singleMovie_loading)
 
     const {
         adult,
@@ -107,6 +109,11 @@ const SingleMovie = (props) => {
         getRatingColor()
     }, [singleMovie_loading, vote_average])
 
+    const handleGoToCategories = async (genreId) => {
+        history.push('/categories')
+        dispatch(pickGenres([genreId]))
+    }
+
 
     return (
         <>
@@ -129,15 +136,28 @@ const SingleMovie = (props) => {
                                 <div className="img">
                                     <img src={poster_path !== null ? `${process.env.REACT_APP_IMAGE_URL}w500${poster_path}` : '/images/poster_not_available.png'} alt={`${title}`} />
                                 </div>
-                                <div className="desc">
-                                    <p><strong>Description: </strong>{overview}</p>
+                                {<div className="desc">
+                                    <p><strong>Description: </strong>{overview ? overview : 'no data... Sorry'}</p>
                                     <p><strong>Original language: </strong>{original_language}</p>
                                     <p><strong>Release date: </strong>{release_date}</p>
                                     <p><strong>Status: </strong>{status}</p>
                                     <div className="rating"><span><strong>Average Rating: </strong><div style={{ backgroundColor: ratingColor }} className="rating-icon">{vote_average}</div></span></div>
-                                    {genres ? <p><strong>Genre: </strong>{genres ? genres[0].name : 'no data... Sorry'}</p> : null}
                                     <p><strong>Age: </strong>{adult ? '18+' : 'below 18'}</p>
-                                </div>
+                                    <div className="genres-wrapper">
+                                        <p>genres:</p>
+                                        {genres ?
+                                            genres.map((genre) => {
+                                                return (
+                                                    <button
+                                                        key={genre.id}
+                                                        onClick={() => handleGoToCategories(genre.id)}
+                                                    >
+                                                        {genre.name}
+                                                    </button>
+                                                )
+                                            }) : <p>'no data... Sorry'</p>}
+                                    </div>
+                                </div>}
                             </div>
                             <SingleMovieGallery />
                             <SingleMovieCast />

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useState } from 'react'
 import { NavLink, Link } from 'react-router-dom'
 
 import SearchBar from '../../components/searchBar/SearchBar'
@@ -10,31 +10,15 @@ import './Navbar.css'
 
 const Navbar = () => {
 
-    const [show, setShow] = useState()
     const [sideToggle, setSideToggle] = useState(false)
-
-    const navbarEl = useRef(null)
-
-    useEffect(() => {
-        const showSearchBar = () => {
-            if (navbarEl.current.clientWidth >= 768) {
-                setShow(true)
-            } else {
-                setShow(false)
-            }
-        }
-
-        showSearchBar()
-        window.addEventListener('resize', showSearchBar)
-    }, [navbarEl])
 
     return (
         <>
-            <div className="navbar" ref={navbarEl}>
+            <div className="navbar" >
                 <NavLink className="navbar__logo-link" to="/" exact>
                     <div className="navbar__logo">
                         <h3>
-                            Movies viewer
+                            Movies App
                     </h3>
                     </div>
                 </NavLink>
@@ -52,7 +36,7 @@ const Navbar = () => {
                     </li>
                 </ul>
                 <div
-                    className={`links__search-bar-cnt ${show ? '' : 'hide'}`}>
+                    className='links__search-bar-cnt'>
                     <SearchBar width={290} />
                 </div>
             </div >

@@ -1,10 +1,12 @@
-import { GET_MOVIES, MOVIES_LOADING, MOVIES_FAILED, GET_MOVIES_ERROR } from '../constants/categoriesConstants'
+import { GET_MOVIES, MOVIES_LOADING, MOVIES_FAILED, GET_MOVIES_ERROR, GET_GENRES, PICK_GENRES } from '../constants/categoriesConstants'
 
 const initialState = {
     moviesByCategory: [],
     moviesByCategory_loading: true,
     moviesByCategory_failed: false,
-    moviesByCategory_error: false
+    moviesByCategory_error: false,
+    genres: [],
+    pickedGenres: []
 }
 
 export const categoriesReducer = (state = initialState, action) => {
@@ -29,6 +31,16 @@ export const categoriesReducer = (state = initialState, action) => {
             return {
                 ...state,
                 moviesByCategory_failed: action.payload
+            }
+        case GET_GENRES:
+            return {
+                ...state,
+                genres: action.payload
+            }
+        case PICK_GENRES:
+            return {
+                ...state,
+                pickedGenres: action.payload
             }
         default:
             return state

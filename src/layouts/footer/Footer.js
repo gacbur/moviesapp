@@ -14,7 +14,7 @@ const Footer = () => {
     return (
         <div className="footer">
             <div className="footer__text">
-                <h3>Our socialmedia</h3>
+                <h3>Visit our socialmedia</h3>
             </div>
             <div className="footer__icons">
                 <Link to="/"><AiFillTwitterCircle className="icon" /></Link>

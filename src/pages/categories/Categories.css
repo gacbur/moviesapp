@@ -157,6 +157,7 @@
   border: 2px solid #1a1a1a;
   -webkit-transition: .3s;
   transition: .3s;
+  margin-top: 2em;
 }
 
 .categories__loadmore-btn-wrapper button:hover {
@@ -169,6 +170,5 @@
 
 .categories__loading-wrapper {
   margin-top: 2em;
-  margin-bottom: 4em;
 }
 /*# sourceMappingURL=Categories.css.map */

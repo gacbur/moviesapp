@@ -20,6 +20,7 @@
         display: flex;
         align-items: center;
         width: 60%;
+      
     
         @media all and(max-width:1300px){
             width:80%;
@@ -40,7 +41,10 @@
 
         button{
             display: flex;
-            padding:1em .8em;
+            padding:.5em .4em;
+            width:170px;
+            height: 50px;
+            justify-content: center;
             align-items: center;
             cursor: pointer;
             font-size: 17px;
@@ -128,6 +132,29 @@
                     width: 2.3em;
                     height: 2.3em;
                     margin-left: .3em;
+                }
+            }
+        }
+
+        .genres-wrapper{
+            margin-top: .5em;
+            display: flex;
+
+            p{
+                font-weight: bold;
+            }
+        
+            button{
+                cursor: pointer;
+                background-color: rgb(26,26,26);
+                border:none;
+                color:white;
+                padding: .4em .7em;
+                margin:0em .3em;
+                transition: .25s;
+
+                &:hover{
+                    background-color: rgb(60,60,60);
                 }
             }
         }

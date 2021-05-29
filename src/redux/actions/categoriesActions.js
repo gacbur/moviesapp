@@ -1,4 +1,4 @@
-import { GET_MOVIES, MOVIES_LOADING, MOVIES_FAILED, GET_MOVIES_ERROR } from '../constants/categoriesConstants'
+import { GET_MOVIES, MOVIES_LOADING, MOVIES_FAILED, GET_MOVIES_ERROR, GET_GENRES, PICK_GENRES } from '../constants/categoriesConstants'
 
 export const getMovies = (movies) => (dispatch, getState) => {
     dispatch({
@@ -25,5 +25,19 @@ export const moviesFailed = (hasFailed) => (dispatch, getState) => {
     dispatch({
         type: MOVIES_FAILED,
         payload: hasFailed
+    })
+}
+
+export const getGenres = (genres) => (dispatch, getState) => {
+    dispatch({
+        type: GET_GENRES,
+        payload: genres
+    })
+}
+
+export const pickGenres = (pickedGenres) => (dispatch, getState) => {
+    dispatch({
+        type: PICK_GENRES,
+        payload: pickedGenres
     })
 }
