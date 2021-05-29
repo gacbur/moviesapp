@@ -26,6 +26,7 @@ I've created this app to make viewing movies information and making your favorit
 
 - Javascript
 - Css
+- Sass
 - Html
 - Redux
 - Material-UI
