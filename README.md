@@ -7,7 +7,13 @@
 ![screen5](https://user-images.githubusercontent.com/46655309/120081110-0aa67d80-c0bc-11eb-84c6-9ca79b60622d.JPG)
 
 
+
+
+
 ------------------------------------------------------------------------------------------------------------------------------
+
+
+
 
 ![screen6](https://user-images.githubusercontent.com/46655309/120081111-0aa67d80-c0bc-11eb-9f26-57a2566167aa.JPG)
 
@@ -16,7 +22,7 @@
 
 ## Description
 
-Movies viewer allows you to search for movies, each movie contains: description, average ratings, actors, cast and other information. You can add videos to your favorites and keep a collection of your favorite videos. Each video at the bottom of the page suggests titles that you might like, considering the video you're currently viewing.
+Movies App allows you to search for movies, each movie contains: description, average ratings, actors, cast and other information. You can add videos to your favorites and keep a collection of your favorite videos. Each video at the bottom of the page suggests titles that you might like, considering the video you're currently viewing.
 
 #### My intentions
 
