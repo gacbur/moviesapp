@@ -1,6 +1,6 @@
 # Movies App
 
-![screen1](https://user-images.githubusercontent.com/46655309/120081103-07ab8d00-c0bc-11eb-807a-d07370d945d7.JPG)
+![screen1](https://user-images.githubusercontent.com/46655309/127917135-f9740ba4-51a4-4c50-8f6a-dc8c6a2b4f20.png)
 ![screen2](https://user-images.githubusercontent.com/46655309/120081104-08dcba00-c0bc-11eb-885a-73ca5e842dbb.JPG)
 ![screen3](https://user-images.githubusercontent.com/46655309/120081105-09755080-c0bc-11eb-895f-d83517c59d70.JPG)
 ![screen4](https://user-images.githubusercontent.com/46655309/120081108-0a0de700-c0bc-11eb-80ff-38f5f29f9fc6.JPG)
