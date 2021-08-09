@@ -110,7 +110,7 @@ const SingleMovie = (props) => {
     }, [singleMovie_loading, vote_average])
 
     const handleGoToCategories = async (genreId) => {
-        history.push('/categories')
+        history.push('/genres')
         dispatch(pickGenres([genreId]))
     }
 
