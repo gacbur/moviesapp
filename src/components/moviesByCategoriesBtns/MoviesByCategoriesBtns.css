@@ -1,0 +1,62 @@
+.landing-page__category-btns {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+  margin: 2em 0em;
+}
+
+.landing-page__category-btns button {
+  cursor: pointer;
+  width: 110px;
+  height: 45px;
+  background-color: #1a1a1a;
+  color: white;
+  border: 2px solid #1a1a1a;
+  margin: 0em .3em;
+  -webkit-transition: .25s;
+  transition: .25s;
+}
+
+@media all and (max-width: 500px) {
+  .landing-page__category-btns button {
+    width: 90px;
+  }
+}
+
+@media all and (max-width: 410px) {
+  .landing-page__category-btns button {
+    width: 80px;
+  }
+}
+
+@media all and (max-width: 360px) {
+  .landing-page__category-btns button {
+    width: 75px;
+    height: 40px;
+    margin: 0 .2em;
+    font-size: 12px;
+  }
+}
+
+@media all and (max-width: 330px) {
+  .landing-page__category-btns button {
+    width: 70px;
+    height: 40px;
+    margin: 0 .15em;
+  }
+}
+
+.landing-page__category-btns button.active {
+  -webkit-transition: none;
+  transition: none;
+  outline: 3px solid #e04040;
+}
+
+.landing-page__category-btns button:hover {
+  background-color: #3c3c3c;
+}
+/*# sourceMappingURL=MoviesByCategoriesBtns.css.map */
