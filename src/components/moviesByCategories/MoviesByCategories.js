@@ -21,51 +21,37 @@ const MoviesByCategories = () => {
     const movies_loaded = useSelector(state => state.movies.movies_loaded)
 
     const [category, setCategory] = useState('now_playing')
-    const [loadMorePages, setLoadMorePages] = useState(1)
-
-
-    useEffect(() => {
-        dispatch(moviesLoading(true))
-        axios.get(`${process.env.REACT_APP_API_URL}movie/${category}?api_key=${process.env.REACT_APP_API_KEY}`, { params: { language: 'en-US', page: loadMorePages } })
-            .then(res => res.data.results)
-            .then(results => {
-                dispatch(getMovies([...results]))
-                dispatch(moviesLoading(false))
-            })
-            .catch(e => {
-                console.log(e)
-            })
-    }, [])
+    const [page, setPage] = useState(1)
 
     useEffect(() => {
-        if (loadMorePages !== 1) {
+        const API_URL = `${process.env.REACT_APP_API_URL}movie/${category}?api_key=${process.env.REACT_APP_API_KEY}`
+
+        const fetchData = async () => {
             dispatch(moviesLoading(true))
-            axios.get(`${process.env.REACT_APP_API_URL}movie/${category}?api_key=${process.env.REACT_APP_API_KEY}`, { params: { language: 'en-US', page: loadMorePages } })
-                .then(res => res.data.results)
-                .then(results => {
-                    dispatch(getMovies([...movies, ...results]))
-                    dispatch(moviesLoading(false))
-                })
-                .catch(e => {
-                    console.log(e)
-                })
-        }
-    }, [loadMorePages])
-
-    useEffect(() => {
-        dispatch(moviesLoading(true))
-        axios.get(`${process.env.REACT_APP_API_URL}movie/${category}?api_key=${process.env.REACT_APP_API_KEY}`, { params: { language: 'en-US', page: loadMorePages } })
-            .then(res => res.data.results)
-            .then(results => {
+            try {
+                const moviesData = await axios.get(API_URL, { params: { language: 'en-US', page: page } })
+                const results = await moviesData.data.results
                 dispatch(getMovies([...results]))
                 dispatch(moviesLoading(false))
-            })
-            .catch(e => {
-                console.log(e)
-            })
+            } catch (e) { console.log(e) }
+        }
+        fetchData()
     }, [category])
 
-    const handleLoadMoreMovies = () => setLoadMorePages(prevState => prevState + 1)
+    useEffect(() => {
+        const API_URL = `${process.env.REACT_APP_API_URL}movie/${category}?api_key=${process.env.REACT_APP_API_KEY}`
+
+        const fetchData = async () => {
+            dispatch(moviesLoading(true))
+            try {
+                const moviesData = await axios.get(API_URL, { params: { language: 'en-US', page: page } })
+                const results = await moviesData.data.results
+                dispatch(getMovies([...movies, ...results]))
+                dispatch(moviesLoading(false))
+            } catch (e) { console.log(e) }
+        }
+        if (page !== 1) fetchData()
+    }, [page])
 
     const handleSetCategory = (e) => setCategory(e.target.name)
 
@@ -93,7 +79,7 @@ const MoviesByCategories = () => {
             </div>
             <div className="landing-page__load-more">
                 <button
-                    onClick={() => handleLoadMoreMovies()}
+                    onClick={() => setPage(prevState => prevState + 1)}
                 >
                     Load more</button>
             </div>
