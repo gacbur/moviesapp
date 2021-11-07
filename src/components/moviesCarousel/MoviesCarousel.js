@@ -20,12 +20,12 @@ const MoviesCarousel = () => {
     const history = useHistory()
 
     useEffect(() => {
-
-        axios.get(`${process.env.REACT_APP_API_URL}movie/popular?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`)
-            .then(res => res.data.results)
-            .then(movies => {
+        const getMovies = async () => {
+            try {
+                const movies = await axios.get(`${process.env.REACT_APP_API_URL}movie/popular?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`)
+                const results = movies.data.results
                 setMovies(
-                    movies.map(movie => {
+                    results.map(movie => {
                         return {
                             id: movie.id,
                             imageUrl: movie.backdrop_path,
@@ -34,7 +34,9 @@ const MoviesCarousel = () => {
                         }
                     })
                 )
-            })
+            } catch (e) { console.log(e) }
+        }
+        getMovies()
     }, [])
 
     useEffect(() => {
@@ -75,7 +77,9 @@ const MoviesCarousel = () => {
                         {movies.map((movie, index) => {
                             return (
                                 <div
-                                    className="carousel__item-cnt" key={movie.id}>
+                                    className="carousel__item-cnt"
+                                    key={movie.id}
+                                >
                                     <div
                                         onClick={() => handleGoToMovie(index)}
                                         className="carousel__item" style={{ backgroundImage: `url(${process.env.REACT_APP_IMAGE_URL}w1280${movie.imageUrl})` }}>

@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,KAAK,CAAA;EACD,gBAAgB,EAAE,KAAK;EACvB,UAAU,EAAE,GAAG;EACf,MAAM,EAAC,KAAK;EACZ,KAAK,EAAC,KAAK;EACX,OAAO,EAAC,OAAO;EACf,UAAU,EAAE,CAAC,CAAC,GAAG,CAAC,IAAI,CAAC,mBAAe;EACtC,aAAa,EAAE,IAAI;CA4BtB;;AANI,AAAD,YAAQ,CAAA;EACJ,KAAK,EAAC,IAAI;EACV,UAAU,EAAE,GAAG;EACf,KAAK,EAAC,KAAK;CACd",
+    "sources": [
+        "LoginAndRegisterForm.scss"
+    ],
+    "names": [],
+    "file": "LoginAndRegisterForm.css"
+}

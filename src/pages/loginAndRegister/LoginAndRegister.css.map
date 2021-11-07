@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,uBAAuB,CAAA;EACnB,KAAK,EAAC,IAAI;EACV,OAAO,EAAE,IAAI;EACb,eAAe,EAAE,MAAM;CAC1B",
+    "sources": [
+        "LoginAndRegister.scss"
+    ],
+    "names": [],
+    "file": "LoginAndRegister.css"
+}

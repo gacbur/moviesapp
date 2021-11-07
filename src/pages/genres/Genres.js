@@ -29,65 +29,69 @@ const Genres = () => {
     const pickedGenres = useSelector(state => state.genres.pickedGenres)
 
     useEffect(() => {
-        axios.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.REACT_APP_API_KEY}`)
-            .then(res => res.data.genres)
-            .then(genres => dispatch(getGenres([...genres])))
-    }, [])
+        const getGenresData = async () => {
+            const URL = `https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.REACT_APP_API_KEY}`
+            try {
+                const results = await axios.get(URL)
+                const genres = await results.data.genres
+                dispatch(getGenres([...genres]))
+            } catch (e) { console.log(e) }
+        }
+        getGenresData()
+    }, [dispatch])
 
     const handleGenres = (genreId) => {
         const isInGenres = pickedGenres.find(Id => Id === genreId)
-        if (isInGenres) {
+        isInGenres ?
             dispatch(pickGenres([...pickedGenres.filter(Id => Id !== genreId)]))
-        }
-        else {
+            :
             dispatch(pickGenres([...pickedGenres, genreId]))
-        }
     }
 
     useEffect(() => {
-        dispatch(moviesLoading(true))
-        dispatch(getMoviesError(false))
-        axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}`, { params: { page: loadMorePages, with_genres: String(pickedGenres) } })
-            .then(res => res.data)
-            .then(data => {
-                if (data.total_pages > 1) {
+        const getMoviesData = async () => {
+            const URL = `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}`
+            dispatch(moviesLoading(true))
+            dispatch(getMoviesError(false))
+            try {
+                const results = await axios.get(URL, { params: { page: loadMorePages, with_genres: String(pickedGenres) } })
+                const data = await results.data
+                data.total_pages > 1 ?
                     setHasNextPage(true)
-                }
-                else {
+                    :
                     setHasNextPage(false)
-                }
                 dispatch(getMovies([...data.results]))
                 dispatch(moviesLoading(false))
                 if (data.results.length === 0) {
                     dispatch(moviesFailed(true))
                 }
-            })
-            .catch(e => {
+            } catch (e) {
                 console.log(e)
-                dispatch(getMoviesError(true))
                 dispatch(moviesLoading(false))
-            })
+                dispatch(getMoviesError(true))
+            }
+        }
+        getMoviesData()
     }, [pickedGenres])
 
     useEffect(() => {
-        if (loadMorePages !== 1) {
+        const getMoviesData = async () => {
+            const URL = `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}`
             dispatch(moviesLoading(true))
             dispatch(moviesFailed(false))
-            axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}`, { params: { page: loadMorePages, with_genres: pickedGenres } })
-                .then(res => res.data.results)
-                .then(results => {
-                    dispatch(getMovies([...moviesByGenre, ...results]))
-                    dispatch(moviesLoading(false))
-                    if (results.length === 0) {
-                        dispatch(moviesFailed(true))
-                    }
-                })
-                .catch(e => {
-                    console.log(e)
-                    dispatch(getMoviesError(true))
-                    dispatch(moviesLoading(false))
-                })
+            try {
+                const results = await axios.get(URL, { params: { page: loadMorePages, with_genres: pickedGenres } })
+                const data = await results.data.results
+                dispatch(getMovies([...moviesByGenre, ...data]))
+                dispatch(moviesLoading(false))
+                data.length === 0 && dispatch(moviesFailed(true))
+            } catch (e) {
+                console.log(e)
+                dispatch(getMoviesError(true))
+                dispatch(moviesLoading(false))
+            }
         }
+        loadMorePages !== 1 && getMoviesData()
     }, [loadMorePages])
 
     const handleLoadMoreMovies = () => {
@@ -139,7 +143,7 @@ const Genres = () => {
                 </button>}
             </div> : null}
             <div className="categories__loading-wrapper">
-                {movies_loading && <Loading />}
+                {movies_loading && <Loading size={90} />}
             </div>
             <GoUpButton
                 scrollToElementName={'categories'}

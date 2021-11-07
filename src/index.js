@@ -16,9 +16,6 @@ import { singleMovieReducer } from './redux/reducers/singleMovieReducer'
 import { favMoviesReducer } from './redux/reducers/favMoviesReducer'
 import { genresReducer } from './redux/reducers/genresReducer'
 
-import { ThemeProvider } from '@material-ui/core/styles'
-import theme from './material-ui/theme'
-
 const reducers = combineReducers({
   movies: moviesReducer,
   singleMovie: singleMovieReducer,
@@ -32,17 +29,13 @@ const store = createStore(
 )
 
 ReactDOM.render(
-  <ThemeProvider theme={theme}>
-    <Provider store={store}>
-      <React.StrictMode>
-        <App />
-      </React.StrictMode>
-    </Provider>
-  </ThemeProvider>,
+
+  <Provider store={store}>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </Provider>,
   document.getElementById('root')
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();

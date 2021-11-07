@@ -15,13 +15,13 @@ const Navbar = () => {
     return (
         <>
             <div className="navbar" >
-                <NavLink className="navbar__logo-link" to="/" exact>
-                    <div className="navbar__logo">
-                        <h3>
+                <div className="navbar__logo">
+                    <NavLink className="navbar__logo-link" to="/" exact>
+                        <h3 className="navbar__logo-text">
                             Movies App
-                    </h3>
-                    </div>
-                </NavLink>
+                        </h3>
+                    </NavLink>
+                </div>
                 <button
                     className="navbar__hamburger"><GiHamburgerMenu
                         onClick={() => setSideToggle(true)}
@@ -37,8 +37,17 @@ const Navbar = () => {
                 </ul>
                 <div
                     className='links__search-bar-cnt'>
-                    <SearchBar width={290} />
+                    <SearchBar className="search-bar" />
                 </div>
+                <ul className="navbar__links-login">
+                    <li className="login">
+                        <NavLink to="/login">Log In</NavLink>
+                    </li>
+                    <li className="register">
+                        <NavLink to="/login">Register</NavLink>
+                    </li>
+                </ul>
+
             </div >
             <div className={`sidedrawer ${sideToggle ? 'show' : ''}`}>
                 <ul className="sidedrawer__links" onClick={() => setSideToggle(false)}>
@@ -51,16 +60,24 @@ const Navbar = () => {
                     <li>
                         <Link to="/favorites">Favorites <BsFillHeartFill className="sidedrawer__links__heart" /></Link>
                     </li>
+                    <li>
+                        <NavLink to="/login">Log In</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/login">Register</NavLink>
+                    </li>
                 </ul>
                 <div className="sidedrawer__search-bar-cnt">
-                    <SearchBar setSideDrawerShow={setSideToggle} width={200} />
+                    <SearchBar />
                 </div>
             </div >
-            {sideToggle && <div
-                className="backdrop"
-                onClick={() => setSideToggle(false)}>
+            {
+                sideToggle && <div
+                    className="backdrop"
+                    onClick={() => setSideToggle(false)}>
 
-            </div>}
+                </div>
+            }
         </>
     )
 }

@@ -53,16 +53,15 @@ const MoviesByCategories = () => {
         if (page !== 1) fetchData()
     }, [page])
 
-    const handleSetCategory = (e) => setCategory(e.target.name)
 
     return (
         <>
             <MoviesByCategoriesBtns
-                handleSetCategory={handleSetCategory}
+                setCategory={setCategory}
                 category={category}
             />
             <div className="landing-page__loading-movies">
-                {movies_loaded && <Loading />}
+                {movies_loaded && <Loading size={90} />}
             </div>
             <div className="landing-page__movies">
                 {!movies_loaded && movies.map((item, index) => {

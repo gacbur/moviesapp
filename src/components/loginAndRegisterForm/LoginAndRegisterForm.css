@@ -1,0 +1,17 @@
+.form {
+  background-color: white;
+  margin-top: 4em;
+  height: 500px;
+  width: 410px;
+  padding: 2em 2em;
+  -webkit-box-shadow: 0 2px 23px rgba(0, 0, 0, 0.22);
+          box-shadow: 0 2px 23px rgba(0, 0, 0, 0.22);
+  border-radius: 15px;
+}
+
+.form__input {
+  width: 100%;
+  margin-top: 1em;
+  color: black;
+}
+/*# sourceMappingURL=LoginAndRegisterForm.css.map */

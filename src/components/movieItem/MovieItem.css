@@ -6,7 +6,7 @@
   height: 380px;
   -webkit-transition: .3s;
   transition: .3s;
-  margin: .8em;
+  margin: .8em !important;
   -webkit-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
           box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }

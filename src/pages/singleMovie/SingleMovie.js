@@ -170,7 +170,7 @@ const SingleMovie = (props) => {
                     </>
                     :
                     <div className="single-movie__loading">
-                        <Loading />
+                        <Loading size={90} />
                     </div>
             }
         </>

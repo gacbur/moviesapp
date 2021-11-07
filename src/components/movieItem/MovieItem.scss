@@ -6,7 +6,7 @@
     max-width:300px;
     height: 380px;
     transition: .3s;
-    margin:.8em;
+    margin:.8em !important;
     box-shadow: 0 2px 8px rgba(0,0,0,.3);
 
     @media all and (max-width: 1232px) {
